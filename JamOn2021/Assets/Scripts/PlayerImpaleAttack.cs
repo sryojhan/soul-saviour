@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSweepAttack : MonoBehaviour
+public class PlayerEmpale : MonoBehaviour
 {
-
     private float timeHeld = 0;
     [SerializeField] float holdMouseTime;
     [SerializeField] Transform attackDistanceFromPlayer;
@@ -29,10 +28,10 @@ public class PlayerSweepAttack : MonoBehaviour
                 Vector3 circlePosDir = (mouseWorldPoint - playerPos.position).normalized * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
                 Vector2 attackPos = playerPos.position + circlePosDir;
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
- 
+
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    
+
                 }
             }
 
