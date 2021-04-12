@@ -28,7 +28,7 @@ public class EscenaInicial : MonoBehaviour
             {
                 Change();
             }
-            logo.localScale = Vector3.one * Mathf.Lerp(.5f, .8f, t / logoTime);
+            logo.localScale = Vector3.one * Mathf.Lerp(.5f, .7f, t / logoTime);
         }
         else
         {
@@ -56,7 +56,7 @@ public class EscenaInicial : MonoBehaviour
     void createText()
     {
         int[] orden = { 0, 1, 2 };
-        for (int i = 0; i < 3; i++)
+        for (int i = 1; i < 3; i++)
         {
             int random = Random.Range(0, 3);
             int c = orden[random];
