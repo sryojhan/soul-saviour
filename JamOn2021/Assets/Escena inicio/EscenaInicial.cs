@@ -28,6 +28,7 @@ public class EscenaInicial : MonoBehaviour
             {
                 Change();
             }
+            logo.localScale = Vector3.one * Mathf.Lerp(.5f, .8f, t / logoTime);
         }
         else
         {
