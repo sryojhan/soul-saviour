@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 dash.enabled = true;
-                Debug.Log(dash.enabled);
             }
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)) awDown = true;
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) asDown = true;

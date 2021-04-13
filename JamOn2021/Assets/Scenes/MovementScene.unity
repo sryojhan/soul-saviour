@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba6daf9ea754ef4395a2d81f85e7af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 400
 --- !u!50 &158884313
 Rigidbody2D:
   serializedVersion: 4
@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa964549b30571e4191abb54c95f8ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 10
-  dashDistance: 1
+  dashSpeed: 20
+  dashDistance: 5
 --- !u!1 &1707421278
 GameObject:
   m_ObjectHideFlags: 0
