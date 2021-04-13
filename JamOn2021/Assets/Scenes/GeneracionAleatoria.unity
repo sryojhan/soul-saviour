@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1802578614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -331,6 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004fe40b511fdea4b9a5d6ebeb7d1967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  left: {fileID: 0}
+  right: {fileID: 0}
+  bottom: {fileID: 0}
+  up: {fileID: 0}
 --- !u!1 &1845027847
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,8 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1802578613}
+  initial_room: {fileID: 0}
   numberOfRooms: 10
-  initial_position: {fileID: 0}
   scenery: {fileID: 159295934}
 --- !u!4 &1845027849
 Transform:
