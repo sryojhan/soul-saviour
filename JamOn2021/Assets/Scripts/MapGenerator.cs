@@ -7,8 +7,8 @@ public class MapGenerator : MonoBehaviour
     [Header("Provisional")]
     public GameObject prefab;
 
-    public GameObject initial_room;
     public int numberOfRooms = 5;
+    public Transform initial_position;
 
     public Transform scenery;
 
@@ -17,12 +17,12 @@ public class MapGenerator : MonoBehaviour
         instantiateMap(createMap());
     }
 
-    private List<Vector2Int> createMap()
+    private List<Vector2> createMap()
     {
-        List<Vector2Int> possibilities = new List<Vector2Int>();
-        List<Vector2Int> rooms = new List<Vector2Int>();
+        List<Vector2> possibilities = new List<Vector2>();
+        List<Vector2> rooms = new List<Vector2>();
 
-        addAdjacent(possibilities, rooms, Vector2Int.zero);
+        addAdjacent(possibilities, rooms, Vector2.zero);
 
         for (int i = 0; i < numberOfRooms; i++)
         {
@@ -36,15 +36,15 @@ public class MapGenerator : MonoBehaviour
         return rooms;
     }
 
-    private void addAdjacent(List<Vector2Int> list, List<Vector2Int> rooms, Vector2Int vector)
+    private void addAdjacent(List<Vector2> list, List<Vector2> rooms, Vector2 vector)
     {
-        avoidRepetitions(list, rooms, vector + Vector2Int.right);
-        avoidRepetitions(list, rooms, vector + Vector2Int.left);
-        avoidRepetitions(list, rooms, vector + Vector2Int.down);
-        avoidRepetitions(list, rooms, vector + Vector2Int.up);
+        avoidRepetitions(list, rooms, vector + Vector2.right);
+        avoidRepetitions(list, rooms, vector + Vector2.left);
+        avoidRepetitions(list, rooms, vector + Vector2.down);
+        avoidRepetitions(list, rooms, vector + Vector2.up);
     }
 
-    private void avoidRepetitions(List<Vector2Int> list, List<Vector2Int> rooms, Vector2Int vector)
+    private void avoidRepetitions(List<Vector2> list, List<Vector2> rooms, Vector2 vector)
     {
         bool contains = false;
         for (int i = 0; i < list.Count && !contains; i++)
@@ -60,49 +60,19 @@ public class MapGenerator : MonoBehaviour
         if (!contains) list.Add(vector);
     }
 
-    private void instantiateMap(List<Vector2Int> roomList)
+    private void instantiateMap(List<Vector2> roomList)
     {
-        Dictionary<Vector2Int, Room> dic = new Dictionary<Vector2Int, Room>();
+        Dictionary<Vector2, Room> dic = new Dictionary<Vector2, Room>();
 
         for (int i = 0; i < roomList.Count; i++)
         {
-            Vector2Int v = roomList[i];
-            var room = Instantiate(prefab, (Vector2)v, Quaternion.identity, scenery).GetComponent<Room>();
-            dic.Add(v, room);
-
-            for (int c = 0; c < roomList.Count; c++)
-            {
-                Vector2Int p = v + Vector2Int.right;
-                if(dic.ContainsKey(p))
-                {
-                    room.right = dic[p];
-                    dic[p].left = room;
-                }
-                p = v + Vector2Int.up;
-                if(dic.ContainsKey(p))
-                {
-                    room.bottom = dic[p];
-                    dic[p].up = room;
-                }
-                p = v + Vector2Int.left;
-                if (dic.ContainsKey(p))
-                {
-                    room.left = dic[p];
-                    dic[p].right = room;
-                }
-                p = v + Vector2Int.down;
-                if (dic.ContainsKey(p))
-                {
-                    room.bottom = dic[p];
-                    dic[p].up = room;
-                }
-            }
+            Instantiate(prefab, roomList[i], Quaternion.identity, scenery);
         }
     }
+
     float t = 0;
     private void Update()
     {
-        return;
         t += Time.deltaTime;
 
         if (t > 1)
