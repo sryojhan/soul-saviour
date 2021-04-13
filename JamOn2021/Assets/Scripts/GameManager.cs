@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public enum Escenas
 {
     Inicial = 0,
     Menu
 }
-
-
 
 public class GameManager : MonoBehaviour
 {
