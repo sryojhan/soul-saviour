@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -11,6 +13,8 @@ public class RangedEnemyBehaviour : MonoBehaviour
     [SerializeField] float forwardSpeed;
     [SerializeField] float deactivateSpeed;
     [SerializeField] float cadence;
+    [SerializeField] float minTimeValue;
+    [SerializeField] float maxTimeValue;
 
     Vector3 initialPosition;
     Color originalColor;
@@ -36,14 +40,16 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
             if (time > cadence)
             {
-                GameObject bullet = Instantiate(bulletPrefab, transform);
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 bullet.GetComponent<InitialSpeed>().setDirection((player.transform.position - transform.position).normalized);
                 time = 0;
             }
         }
     }
 
-
+    private float t;
+    private bool wait;
+    
     private void FixedUpdate()
     {
         Vector2  playerEnemyDirection = (player.transform.position - transform.position);
@@ -54,6 +60,25 @@ public class RangedEnemyBehaviour : MonoBehaviour
                 initialPosition = transform.position;
                 active = true;
                 sp.color = Color.white;
+            }
+            else
+            {
+                t += Time.deltaTime;
+                if (t > Random.Range(minTimeValue, maxTimeValue))
+                {
+                    if (!wait)
+                    {
+                        float x = Random.Range(-1.0f, 1.0f);
+                        float y = Random.Range(-1.0f, 1.0f);
+                        Vector2 dir = new Vector2(x, y);
+                        rb.velocity = dir.normalized * backSpeed * Time.fixedDeltaTime;
+                    }
+                    else rb.velocity = Vector2.zero;
+
+                    wait = !wait;
+                    t = 0;
+                }
+
             }
         }
         else
@@ -78,5 +103,9 @@ public class RangedEnemyBehaviour : MonoBehaviour
             }
             else rb.velocity = Vector2.zero;
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!active) rb.velocity = -rb.velocity;
     }
 }
