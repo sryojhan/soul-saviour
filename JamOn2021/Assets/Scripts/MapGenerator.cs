@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -11,9 +12,17 @@ public class MapGenerator : MonoBehaviour
     public int numberOfSpecialRooms = 3;
     public Transform scenery;
 
+    public int tilesPerRoom = 10;
+
+    [Header("Tiles")]
+    public Tilemap mainTileMap;
+
+    public Tile ground;
+    public Tile wall;
     private void Start()
     {
-        RoomManager.ManageRooms(instantiateRooms(createMap()), numberOfSpecialRooms);
+        var tileMap = new tileMap { ground = ground, wall = wall };
+        RoomManager.ManageRooms(instantiateRooms(createMap()), numberOfSpecialRooms, tilesPerRoom, tileMap, mainTileMap);
     }
 
     private List<Vector2Int> createMap()
@@ -45,6 +54,8 @@ public class MapGenerator : MonoBehaviour
 
     private void avoidRepetitions(List<Vector2Int> list, List<Vector2Int> rooms, Vector2Int vector)
     {
+        if (vector == Vector2Int.zero) return;
+
         bool contains = false;
         for (int i = 0; i < list.Count && !contains; i++)
         {
@@ -64,26 +75,29 @@ public class MapGenerator : MonoBehaviour
         Dictionary<Vector2Int, Room> dic = new Dictionary<Vector2Int, Room>();
         Room[] rooms = new Room[roomList.Count];
 
+        var initialRoom = prefab.GetComponent<Room>();
+
         for (int i = 0; i < roomList.Count; i++)
         {
             Vector2Int v = roomList[i];
-            var room = Instantiate(prefab, (Vector2)v, Quaternion.identity, scenery).GetComponent<Room>();
+            var room = Instantiate(prefab, (Vector2)v * 10, Quaternion.identity, scenery).GetComponent<Room>();
             rooms[i] = room;
-            dic.Add(v, room);
 
+            dic.Add(v, room);
             for (int c = 0; c < roomList.Count; c++)
             {
                 Vector2Int p = v + Vector2Int.right;
-                if(dic.ContainsKey(p))
+
+                if (dic.ContainsKey(p))
                 {
                     room.right = dic[p];
                     dic[p].left = room;
                 }
                 p = v + Vector2Int.up;
-                if(dic.ContainsKey(p))
+                if (dic.ContainsKey(p))
                 {
-                    room.bottom = dic[p];
-                    dic[p].up = room;
+                    room.up = dic[p];
+                    dic[p].bottom = room;
                 }
                 p = v + Vector2Int.left;
                 if (dic.ContainsKey(p))
@@ -101,14 +115,22 @@ public class MapGenerator : MonoBehaviour
         }
         return rooms;
     }
-    
-    //float t = 0;
-        //t += Time.deltaTime;
 
-        //if (t > 1)
-        //{
-        //    for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
-        //    instantiateMap(createMap());
-        //    t = 0;
-        //}
+    //float t = 0;
+    //t += Time.deltaTime;
+
+    //if (t > 1)
+    //{
+    //    for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
+    //    instantiateMap(createMap());
+    //    t = 0;
+    //}
+}
+
+
+
+public struct tileMap
+{
+    public Tile ground;
+    public Tile wall;
 }
