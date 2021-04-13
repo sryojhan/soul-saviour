@@ -13,6 +13,17 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
 
+    private Vector2 attackPos;
+
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+      //  Gizmos.color = Color.yellow;
+      //  Gizmos.DrawSphere(attackPos, attackRange);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -25,14 +36,15 @@ public class PlayerSweepAttack : MonoBehaviour
         {
             if (timeHeld >= holdMouseTime)
             {
-                Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3 circlePosDir = (mouseWorldPoint - playerPos.position).normalized * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
-                Vector2 attackPos = playerPos.position + circlePosDir;
+                Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
+                Vector2 circlePosDir = ((mouseWorldPoint - playerPos2D).normalized) * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
+
+                attackPos = (playerPos2D + circlePosDir);
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
- 
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    
+                    print("collision " + i);
                 }
             }
 
