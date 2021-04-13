@@ -10,7 +10,7 @@ public static class RoomManager
     {
         none, special, lava, holes, turrets, info
     }
-    public static void ManageRooms(Room[] rooms, int nSpecial, int roomSize, tileMap tiles, Tilemap tileMap)
+    public static void ManageRooms(Room[] rooms, int nSpecial, int roomSize, tileMap tiles, tileMaps tileMap)
     {
         int N = rooms.Length;
 
@@ -32,9 +32,38 @@ public static class RoomManager
         }
 
         foreach (Room room in rooms)
-            CreateRoom(room, roomSize, tiles, tileMap);
+            CreateRoomInterior(room, roomSize, tiles, tileMap.background);
+        foreach (Room room in rooms)
+            CreateRoomBorder(room, roomSize, tiles, tileMap.walls);
     }
-    private static void CreateRoom(Room room, int size, tileMap tiles, Tilemap tilemap)
+
+    public static void CreateInitialRoom(Room initial_room, int size, tileMap tiles, tileMaps tilemap)
+    {
+        CreateRoomInterior(initial_room, size, tiles, tilemap.background);
+        CreateRoomBorder(initial_room, size, tiles, tilemap.walls);
+    }
+
+    
+    private static void CreateRoomBorder(Room room, int size, tileMap tiles, Tilemap tilemap)
+    {
+        Vector2Int pos = new Vector2Int((int)room.transform.position.x, (int)room.transform.position.y);
+
+        pos -= new Vector2Int(size / 2, size / 2);
+
+        if (!room.bottom)
+            for (int x = pos.x; x <= pos.x + size; x++)
+                tilemap.SetTile(new Vector3Int(x, pos.y, 0), tiles.wall);
+        if (!room.up)
+            for (int x = pos.x; x <= pos.x + size; x++)
+                tilemap.SetTile(new Vector3Int(x, pos.y + size, 0), tiles.wall);
+        if (!room.left)
+            for (int y = pos.y; y <= pos.y + size; y++)
+                tilemap.SetTile(new Vector3Int(pos.x, y, 0), tiles.wall);
+        if (!room.right)
+            for (int y = pos.y; y <= pos.y + size; y++)
+                tilemap.SetTile(new Vector3Int(pos.x + size, y, 0), tiles.wall);
+    }
+    static void CreateRoomInterior(Room room, int size, tileMap tiles, Tilemap tilemap)
     {
         Vector2Int pos = new Vector2Int((int)room.transform.position.x, (int)room.transform.position.y);
 
@@ -48,26 +77,19 @@ public static class RoomManager
             }
         }
 
-
-        if (!room.bottom)
-            for (int x = pos.x; x <= pos.x + size; x++)
-                tilemap.SetTile(new Vector3Int(x, pos.y - 1, 0), tiles.wall);
-        if (!room.up)
-            for (int x = pos.x; x <= pos.x + size; x++)
-                tilemap.SetTile(new Vector3Int(x, pos.y + size + 1, 0), tiles.wall);
-        if (!room.left)
-            for (int y = pos.y; y <= pos.y + size; y++)
-                tilemap.SetTile(new Vector3Int(pos.x - 1,y, 0), tiles.wall);
-        if (!room.right)
-            for (int y = pos.y; y <= pos.y + size; y++)
-                tilemap.SetTile(new Vector3Int(pos.x + size + 1, y, 0), tiles.wall);
-
-
-        if (room.type == RoomTypes.special)
-        {
-            room.GetComponent<SpriteRenderer>().color = Color.red;
-            return;
-        }
+        //if (!room.bottom)
+        //    for (int x = pos.x; x <= pos.x + size; x++)
+        //        tilemap.SetTile(new Vector3Int(x, pos.y, 0), tiles.wall);
+        //if (!room.up)
+        //    for (int x = pos.x; x <= pos.x + size; x++)
+        //        tilemap.SetTile(new Vector3Int(x, pos.y + size, 0), tiles.wall);
+        //if (!room.left)
+        //    for (int y = pos.y; y <= pos.y + size; y++)
+        //        tilemap.SetTile(new Vector3Int(pos.x, y, 0), tiles.wall);
+        //if (!room.right)
+        //    for (int y = pos.y; y <= pos.y + size; y++)
+        //        tilemap.SetTile(new Vector3Int(pos.x + size, y, 0), tiles.wall);
+        //CreateRoomBorder(room, size, tiles, tilemap);
     }
 
     static void print(object mssg)
