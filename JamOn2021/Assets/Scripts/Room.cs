@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public RoomManager.RoomTypes type;
+
     public Room left;
     public Room right;
     public Room bottom;

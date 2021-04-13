@@ -9,12 +9,12 @@ public class MapGenerator : MonoBehaviour
 
     public GameObject initial_room;
     public int numberOfRooms = 5;
-
+    public int numberOfSpecialRooms = 3;
     public Transform scenery;
 
     private void Start()
     {
-        instantiateMap(createMap());
+        RoomManager.ManageRooms(instantiateRooms(createMap()), numberOfSpecialRooms);
     }
 
     private List<Vector2Int> createMap()
@@ -60,14 +60,16 @@ public class MapGenerator : MonoBehaviour
         if (!contains) list.Add(vector);
     }
 
-    private void instantiateMap(List<Vector2Int> roomList)
+    private Room[] instantiateRooms(List<Vector2Int> roomList)
     {
         Dictionary<Vector2Int, Room> dic = new Dictionary<Vector2Int, Room>();
+        Room[] rooms = new Room[roomList.Count];
 
         for (int i = 0; i < roomList.Count; i++)
         {
             Vector2Int v = roomList[i];
             var room = Instantiate(prefab, (Vector2)v, Quaternion.identity, scenery).GetComponent<Room>();
+            rooms[i] = room;
             dic.Add(v, room);
 
             for (int c = 0; c < roomList.Count; c++)
@@ -98,18 +100,16 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+        return rooms;
     }
-    float t = 0;
-    private void Update()
-    {
-        return;
-        t += Time.deltaTime;
+    
+    //float t = 0;
+        //t += Time.deltaTime;
 
-        if (t > 1)
-        {
-            for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
-            instantiateMap(createMap());
-            t = 0;
-        }
-    }
+        //if (t > 1)
+        //{
+        //    for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
+        //    instantiateMap(createMap());
+        //    t = 0;
+        //}
 }
