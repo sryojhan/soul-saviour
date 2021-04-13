@@ -20,7 +20,11 @@ public class PlayerMovement : MonoBehaviour
         aDown = false; sDown = false; wDown = false; dDown = false;  awDown = false; asDown = false; wdDown = false; sdDown = false;
         if (!dash.enabled)
         {
-            if (Input.GetKey(KeyCode.Space)) dash.enabled = true;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dash.enabled = true;
+                Debug.Log(dash.enabled);
+            }
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)) awDown = true;
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) asDown = true;
             else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) wdDown = true;
@@ -35,17 +39,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dash.enabled)
         {
-            if (awDown) rb.velocity = (Vector2.left + Vector2.up).normalized * speed * Time.fixedDeltaTime;
-            else if (asDown) rb.velocity = (Vector2.left + Vector2.down).normalized * speed * Time.fixedDeltaTime;
-            else if (wdDown) rb.velocity = (Vector2.right + Vector2.up).normalized * speed * Time.fixedDeltaTime;
-            else if (sdDown) rb.velocity = (Vector2.right + Vector2.down).normalized * speed * Time.fixedDeltaTime;
-            else if (aDown) rb.velocity = Vector2.left * speed * Time.fixedDeltaTime;
-            else if (wDown) rb.velocity = Vector2.up * speed * Time.fixedDeltaTime;
-            else if (sDown) rb.velocity = Vector2.down * speed * Time.fixedDeltaTime;
-            else if (dDown) rb.velocity = Vector2.right * speed * Time.fixedDeltaTime;
+            if (awDown) { rb.velocity = (Vector2.left + Vector2.up).normalized * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (asDown) { rb.velocity = (Vector2.left + Vector2.down).normalized * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (wdDown) { rb.velocity = (Vector2.right + Vector2.up).normalized * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (sdDown) { rb.velocity = (Vector2.right + Vector2.down).normalized * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (aDown) { rb.velocity = Vector2.left * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (wDown) { rb.velocity = Vector2.up * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (sDown) { rb.velocity = Vector2.down * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
+            else if (dDown) { rb.velocity = Vector2.right * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
             else rb.velocity = Vector2.zero;
-
-            direction = rb.velocity;
         }
     }
     public Vector2 getDirection()
