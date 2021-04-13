@@ -16,13 +16,18 @@ public class PlayerSweepAttack : MonoBehaviour
     private Vector2 attackPos;
 
 
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-      //  Gizmos.color = Color.yellow;
-      //  Gizmos.DrawSphere(attackPos, attackRange);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(attackPos, attackRange);
+    //}
 
+
+    public bool isHeldEnough()
+    {
+        return timeHeld >= holdMouseTime;
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,12 +49,11 @@ public class PlayerSweepAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    print("collision " + i);
+                    
                 }
             }
 
             timeHeld = 0;
         }
-
     }
 }
