@@ -121,13 +121,19 @@ public class MapGenerator : MonoBehaviour
     }
 
     //float t = 0;
-    //t += Time.deltaTime;
-
-    //if (t > 1)
+    //private void Update()
     //{
-    //    for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
-    //    instantiateMap(createMap());
-    //    t = 0;
+    //    t += Time.deltaTime;
+
+    //    if (t > 1)
+    //    {
+    //        for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
+
+    //        mainTileMap.ClearAllTiles();
+    //        walls.ClearAllTiles();
+    //        Start();
+    //        t = 0;
+    //    }
     //}
 }
 
@@ -135,6 +141,7 @@ public struct tileMaps
 {
     public Tilemap background;
     public Tilemap walls;
+
 }
 
 public struct tileMap
