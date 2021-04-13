@@ -75,7 +75,9 @@ public class MapGenerator : MonoBehaviour
         Dictionary<Vector2Int, Room> dic = new Dictionary<Vector2Int, Room>();
         Room[] rooms = new Room[roomList.Count];
 
-        var initialRoom = prefab.GetComponent<Room>();
+        var initial_room = Instantiate(prefab, scenery).GetComponent<Room>();
+
+        dic.Add(Vector2Int.zero, initial_room);
 
         for (int i = 0; i < roomList.Count; i++)
         {
