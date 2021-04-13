@@ -7,7 +7,6 @@ public class MapGenerator : MonoBehaviour
     [Header("Provisional")]
     public GameObject prefab;
 
-    public GameObject initial_room;
     public int numberOfRooms = 5;
     public int numberOfSpecialRooms = 3;
     public Transform scenery;
@@ -17,12 +16,12 @@ public class MapGenerator : MonoBehaviour
         RoomManager.ManageRooms(instantiateRooms(createMap()), numberOfSpecialRooms);
     }
 
-    private List<Vector2Int> createMap()
+    private List<Vector2> createMap()
     {
-        List<Vector2Int> possibilities = new List<Vector2Int>();
-        List<Vector2Int> rooms = new List<Vector2Int>();
+        List<Vector2> possibilities = new List<Vector2>();
+        List<Vector2> rooms = new List<Vector2>();
 
-        addAdjacent(possibilities, rooms, Vector2Int.zero);
+        addAdjacent(possibilities, rooms, Vector2.zero);
 
         for (int i = 0; i < numberOfRooms; i++)
         {
@@ -36,15 +35,15 @@ public class MapGenerator : MonoBehaviour
         return rooms;
     }
 
-    private void addAdjacent(List<Vector2Int> list, List<Vector2Int> rooms, Vector2Int vector)
+    private void addAdjacent(List<Vector2> list, List<Vector2> rooms, Vector2 vector)
     {
-        avoidRepetitions(list, rooms, vector + Vector2Int.right);
-        avoidRepetitions(list, rooms, vector + Vector2Int.left);
-        avoidRepetitions(list, rooms, vector + Vector2Int.down);
-        avoidRepetitions(list, rooms, vector + Vector2Int.up);
+        avoidRepetitions(list, rooms, vector + Vector2.right);
+        avoidRepetitions(list, rooms, vector + Vector2.left);
+        avoidRepetitions(list, rooms, vector + Vector2.down);
+        avoidRepetitions(list, rooms, vector + Vector2.up);
     }
 
-    private void avoidRepetitions(List<Vector2Int> list, List<Vector2Int> rooms, Vector2Int vector)
+    private void avoidRepetitions(List<Vector2> list, List<Vector2> rooms, Vector2 vector)
     {
         bool contains = false;
         for (int i = 0; i < list.Count && !contains; i++)
