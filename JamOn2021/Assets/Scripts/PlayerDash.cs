@@ -25,7 +25,7 @@ public class PlayerDash : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if ((transform.position - initialPosition).magnitude > dashDistance) enabled = false;
+        if ((transform.position - initialPosition).magnitude > dashDistance || pM.getDirection() == Vector2.zero) enabled = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
