@@ -92,7 +92,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
                 if(playerEnemyDirection.magnitude > distanceToBeDeactivated)
                 {
                     rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed;
-                    if((transform.position-initialPosition).magnitude <= 1)
+                    if((transform.position-initialPosition).magnitude <= 0.5f)
                     {
                         rb.velocity = Vector2.zero;
                         active = false;
