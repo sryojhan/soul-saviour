@@ -5,11 +5,9 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float cooldown;
 
-    private bool shooted;
     private float time;
     void Start()
     {
-        shooted = false;
         time = cooldown;
     }
 
@@ -20,7 +18,6 @@ public class PlayerRangedAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1)) //Boton derecho
             {
-                shooted = true;
                 shoot();
                 time = 0;
             }
@@ -37,6 +34,5 @@ public class PlayerRangedAttack : MonoBehaviour
         bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         bullet.GetComponent<InitialSpeed>().setDirection(bulletDir.normalized);
-        shooted = false;
     }
 }
