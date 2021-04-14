@@ -12,12 +12,12 @@ public class ColorPalette : MonoBehaviour
     }
     private void Update()
     {
-        h += Time.deltaTime;
-        if (h > 1) h = 0;
-        material.SetFloat("_H", h);
+        //h += Time.deltaTime;
+        //if (h > 1) h = 0;
+        //material.SetFloat("_H", h);
     }
     public void ChangeColorHue()
     {
-        //material.SetFloat("_H", Random.value);
+        material.SetFloat("_H", Random.value);
     }
 }
