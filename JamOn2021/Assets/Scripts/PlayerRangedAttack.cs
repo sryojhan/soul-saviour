@@ -29,9 +29,14 @@ public class PlayerRangedAttack : MonoBehaviour
     {
         if (shot)
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Vector3 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            bullet.GetComponent<InitialSpeed>().setDirection(mouseWorldPoint-transform.position);
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Vector3 bulletDir = mouseWorldPoint - transform.position;
+
+            float angle = Mathf.Atan2(bulletDir.y, bulletDir.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            bullet.GetComponent<InitialSpeed>().setDirection(bulletDir.normalized);
             shot = false;
         }
     }
