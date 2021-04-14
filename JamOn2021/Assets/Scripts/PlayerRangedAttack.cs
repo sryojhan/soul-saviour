@@ -5,7 +5,7 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float cooldown;
 
-    private bool shooted;
+    bool shooted;
     private float time;
     void Start()
     {
