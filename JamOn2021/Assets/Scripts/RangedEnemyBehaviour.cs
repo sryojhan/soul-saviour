@@ -15,12 +15,15 @@ public class RangedEnemyBehaviour : MonoBehaviour
     [SerializeField] float cadence;
     [SerializeField] float minTimeValue;
     [SerializeField] float maxTimeValue;
+    [SerializeField] float interpolation;
 
     Vector3 initialPosition;
     Color originalColor;
 
     SpriteRenderer sp;
     Rigidbody2D rb;
+
+    private Rigidbody2D playerRb;
     private bool active;
     void Start()
     {
@@ -29,6 +32,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
         active = false;
         initialPosition = transform.position;
         originalColor = sp.color;
+        playerRb = player.GetComponent<Rigidbody2D>();
     }
 
     float time;
@@ -41,7 +45,12 @@ public class RangedEnemyBehaviour : MonoBehaviour
             if (time > cadence)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                bullet.GetComponent<InitialSpeed>().setDirection((player.transform.position - transform.position).normalized);
+                Vector3 playerPos = player.transform.position;
+
+
+
+                //playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);
+                bullet.GetComponent<InitialSpeed>().setDirection((playerPos - transform.position).normalized);
                 time = 0;
             }
         }
@@ -71,7 +80,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
                         float x = Random.Range(-1.0f, 1.0f);
                         float y = Random.Range(-1.0f, 1.0f);
                         Vector2 dir = new Vector2(x, y);
-                        rb.velocity = dir.normalized * backSpeed * Time.fixedDeltaTime;
+                        rb.velocity = dir.normalized * backSpeed;
                     }
                     else rb.velocity = Vector2.zero;
 
@@ -85,13 +94,13 @@ public class RangedEnemyBehaviour : MonoBehaviour
         {
             if (playerEnemyDirection.magnitude < distanceToPlayer)
             {
-                rb.velocity = -playerEnemyDirection.normalized * backSpeed * Time.fixedDeltaTime;
+                rb.velocity = -playerEnemyDirection.normalized * backSpeed;
             }
             else if (playerEnemyDirection.magnitude > distanceToPlayer + 1)
             {
                 if(playerEnemyDirection.magnitude > distanceToBeDeactivated)
                 {
-                    rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed * Time.fixedDeltaTime;
+                    rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed;
                     if((transform.position-initialPosition).magnitude <= 1)
                     {
                         rb.velocity = Vector2.zero;
@@ -99,7 +108,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
                         sp.color = originalColor;
                     }
                 }
-                else rb.velocity = playerEnemyDirection.normalized * forwardSpeed * Time.fixedDeltaTime;
+                else rb.velocity = playerEnemyDirection.normalized * forwardSpeed;
             }
             else rb.velocity = Vector2.zero;
         }

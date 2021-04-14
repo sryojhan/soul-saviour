@@ -75,6 +75,7 @@ Shader "Custom/ColorPalette"
 						return col;
 					float v = (col.r + col.g + col.b) / 3;
 					float3 hsv = float3(_H, _S, v);
+
 					float3 rgb = hsv_to_rgb(hsv);
 					col.rgb = fixed4(rgb.r, rgb.g, rgb.b, 1);
 
