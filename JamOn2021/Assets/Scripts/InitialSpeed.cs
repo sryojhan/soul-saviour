@@ -12,7 +12,7 @@ public class InitialSpeed : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = direction.normalized * bulletSpeed * Time.fixedDeltaTime;
+        rb.velocity = direction.normalized * bulletSpeed;
     }
     public void setDirection(Vector2 dir)
     {

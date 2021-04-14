@@ -71,7 +71,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
                         float x = Random.Range(-1.0f, 1.0f);
                         float y = Random.Range(-1.0f, 1.0f);
                         Vector2 dir = new Vector2(x, y);
-                        rb.velocity = dir.normalized * backSpeed * Time.fixedDeltaTime;
+                        rb.velocity = dir.normalized * backSpeed;
                     }
                     else rb.velocity = Vector2.zero;
 
@@ -85,13 +85,13 @@ public class RangedEnemyBehaviour : MonoBehaviour
         {
             if (playerEnemyDirection.magnitude < distanceToPlayer)
             {
-                rb.velocity = -playerEnemyDirection.normalized * backSpeed * Time.fixedDeltaTime;
+                rb.velocity = -playerEnemyDirection.normalized * backSpeed;
             }
             else if (playerEnemyDirection.magnitude > distanceToPlayer + 1)
             {
                 if(playerEnemyDirection.magnitude > distanceToBeDeactivated)
                 {
-                    rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed * Time.fixedDeltaTime;
+                    rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed;
                     if((transform.position-initialPosition).magnitude <= 1)
                     {
                         rb.velocity = Vector2.zero;
@@ -99,7 +99,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
                         sp.color = originalColor;
                     }
                 }
-                else rb.velocity = playerEnemyDirection.normalized * forwardSpeed * Time.fixedDeltaTime;
+                else rb.velocity = playerEnemyDirection.normalized * forwardSpeed;
             }
             else rb.velocity = Vector2.zero;
         }

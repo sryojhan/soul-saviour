@@ -49,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
             else if (dDown) { rb.velocity = Vector2.right * speed * Time.fixedDeltaTime; direction = rb.velocity.normalized; }
             else { rb.velocity = Vector2.zero; direction = rb.velocity.normalized; }*/
 
-            if (awDown) rb.velocity = (Vector2.left + Vector2.up).normalized * speed * Time.fixedDeltaTime;
-            else if (asDown) rb.velocity = (Vector2.left + Vector2.down).normalized * speed * Time.fixedDeltaTime; 
-            else if (wdDown) rb.velocity = (Vector2.right + Vector2.up).normalized * speed * Time.fixedDeltaTime;
-            else if (sdDown) rb.velocity = (Vector2.right + Vector2.down).normalized * speed * Time.fixedDeltaTime; 
-            else if (aDown) rb.velocity = Vector2.left * speed * Time.fixedDeltaTime;
-            else if (wDown) rb.velocity = Vector2.up * speed * Time.fixedDeltaTime; 
-            else if (sDown) rb.velocity = Vector2.down * speed * Time.fixedDeltaTime; 
-            else if (dDown) rb.velocity = Vector2.right * speed * Time.fixedDeltaTime;
+            if (awDown) rb.velocity = (Vector2.left + Vector2.up).normalized * speed;
+            else if (asDown) rb.velocity = (Vector2.left + Vector2.down).normalized * speed; 
+            else if (wdDown) rb.velocity = (Vector2.right + Vector2.up).normalized * speed;
+            else if (sdDown) rb.velocity = (Vector2.right + Vector2.down).normalized * speed; 
+            else if (aDown) rb.velocity = Vector2.left * speed;
+            else if (wDown) rb.velocity = Vector2.up * speed; 
+            else if (sDown) rb.velocity = Vector2.down * speed; 
+            else if (dDown) rb.velocity = Vector2.right * speed;
             else rb.velocity = Vector2.zero; 
 
             direction = rb.velocity;

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ed1c05af0c624448247fb0d2fc92be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 308235693296909002, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
   bulletPrefab: {fileID: 6921970537887382101, guid: b58015c372892d14cbd51a104250d816, type: 3}
   distanceToPlayer: 8
   distanceToBeDeactivated: 15
