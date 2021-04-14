@@ -6,6 +6,7 @@ Shader "Custom/ColorPalette"
 		_H("Hue", Range(0,1)) = 0.5
 		_S("Saturation", Float) = 0.5
 		_Treshold("Gray", Range(0,1)) = 0.5
+		_ContrastColor("Contrast Color", Color) = (1,1,1,1)
 	}
 		SubShader
 		{
@@ -65,16 +66,32 @@ Shader "Custom/ColorPalette"
 				float _S;
 				float _H;
 				float _Treshold;
+				fixed4 _ContrastColor;
 
 				fixed4 frag(v2f i) : SV_Target
 				{
 					fixed4 col = tex2D(_MainTex, i.uv);
 
-					if (col.r == col.g && col.g == col.b)
-						if(col.r <= _Treshold)
-						return col;
+				if (col.r == col.g && col.g == col.b) {
+					//if (col.r <= _Treshold)
+					if (col.r >= 1)
+						//return _ContrastColor;
+					{
+
+						float v = (col.r + col.g + col.b) / 3;
+						float3 hsv = float3(_H, _S, v);
+
+						float3 rgb = hsv_to_rgb(hsv);
+						col.rgb = fixed4(rgb.r, rgb.g, rgb.b, 1);
+						return 1 - col;
+					}
+					return col;
+				}
+
+
 					float v = (col.r + col.g + col.b) / 3;
 					float3 hsv = float3(_H, _S, v);
+
 					float3 rgb = hsv_to_rgb(hsv);
 					col.rgb = fixed4(rgb.r, rgb.g, rgb.b, 1);
 
