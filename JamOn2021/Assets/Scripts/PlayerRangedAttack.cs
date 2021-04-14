@@ -6,12 +6,13 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] float cooldown;
 
     private bool shot;
+    private float time;
     void Start()
     {
         shot = false;
+        time = cooldown;
     }
 
-    private float time;
     void Update()
     {
         time += Time.deltaTime;
