@@ -5,13 +5,14 @@ public class PlayerRangedAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float cooldown;
 
-    private bool shot;
+    private bool shooted;
+    private float time;
     void Start()
     {
-        shot = false;
+        shooted = false;
+        time = cooldown;
     }
 
-    private float time;
     void Update()
     {
         time += Time.deltaTime;
@@ -19,20 +20,23 @@ public class PlayerRangedAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1)) //Boton derecho
             {
-                shot = true;
+                shooted = true;
+                shoot();
                 time = 0;
             }
         }
     }
 
-    private void FixedUpdate()
+    void shoot()
     {
-        if (shot)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            Vector3 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            bullet.GetComponent<InitialSpeed>().setDirection(mouseWorldPoint-transform.position);
-            shot = false;
-        }
+        Vector3 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Vector3 bulletDir = mouseWorldPoint - transform.position;
+
+        float angle = Mathf.Atan2(bulletDir.y, bulletDir.x) * Mathf.Rad2Deg;
+        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        bullet.GetComponent<InitialSpeed>().setDirection(bulletDir.normalized);
+        shooted = false;
     }
 }
