@@ -16,13 +16,16 @@ public class MapGenerator : MonoBehaviour
 
     [Header("Tiles")]
     public Tilemap mainTileMap;
+    public Tilemap walls;
 
     public Tile ground;
     public Tile wall;
     private void Start()
     {
+        var tileMaps = new tileMaps { background = mainTileMap, walls = walls };
         var tileMap = new tileMap { ground = ground, wall = wall };
-        RoomManager.ManageRooms(instantiateRooms(createMap()), numberOfSpecialRooms, tilesPerRoom, tileMap, mainTileMap);
+        RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), tilesPerRoom, tilesPerRoom, tileMap, tileMaps);
+        RoomManager.CreateInitialRoom(initial_room, tilesPerRoom, tileMap, tileMaps);
     }
 
     private List<Vector2Int> createMap()
@@ -70,19 +73,18 @@ public class MapGenerator : MonoBehaviour
         if (!contains) list.Add(vector);
     }
 
-    private Room[] instantiateRooms(List<Vector2Int> roomList)
+    private Room[] instantiateRooms(List<Vector2Int> roomList, out Room initial_room)
     {
         Dictionary<Vector2Int, Room> dic = new Dictionary<Vector2Int, Room>();
         Room[] rooms = new Room[roomList.Count];
 
-        var initial_room = Instantiate(prefab, scenery).GetComponent<Room>();
+        initial_room = Instantiate(prefab, scenery).GetComponent<Room>();
 
         dic.Add(Vector2Int.zero, initial_room);
-
         for (int i = 0; i < roomList.Count; i++)
         {
             Vector2Int v = roomList[i];
-            var room = Instantiate(prefab, (Vector2)v * 10, Quaternion.identity, scenery).GetComponent<Room>();
+            var room = Instantiate(prefab, (Vector2)v * tilesPerRoom, Quaternion.identity, scenery).GetComponent<Room>();
             rooms[i] = room;
 
             dic.Add(v, room);
@@ -119,17 +121,28 @@ public class MapGenerator : MonoBehaviour
     }
 
     //float t = 0;
-    //t += Time.deltaTime;
-
-    //if (t > 1)
+    //private void Update()
     //{
-    //    for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
-    //    instantiateMap(createMap());
-    //    t = 0;
+    //    t += Time.deltaTime;
+
+    //    if (t > 1)
+    //    {
+    //        for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
+
+    //        mainTileMap.ClearAllTiles();
+    //        walls.ClearAllTiles();
+    //        Start();
+    //        t = 0;
+    //    }
     //}
 }
 
+public struct tileMaps
+{
+    public Tilemap background;
+    public Tilemap walls;
 
+}
 
 public struct tileMap
 {

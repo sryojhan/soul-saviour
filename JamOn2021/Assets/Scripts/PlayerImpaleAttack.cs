@@ -2,41 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEmpale : MonoBehaviour
+public class PlayerImpaleAttack : MonoBehaviour
 {
-    private float timeHeld = 0;
-    [SerializeField] float holdMouseTime;
-    [SerializeField] Transform attackDistanceFromPlayer;
+    [SerializeField] float length;
+    [SerializeField] float width;
+    [SerializeField] float attackStartPointOffset;
     [SerializeField] Transform playerPos;
-    [SerializeField] float attackRange;
+    [SerializeField] PlayerSweepAttack sweepComponent;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
+    RaycastHit2D enemyHit;
+    Vector2 inipos;
+    Vector2 dir;
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(inipos, dir * length);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonUp(0) && !sweepComponent.isHeldEnough())
         {
-            timeHeld += Time.deltaTime;
-        }
+            Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+            Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (timeHeld >= holdMouseTime)
+            dir = (mouseWorldPoint - playerPos2D).normalized;
+
+            float angle = Vector2.Angle(new Vector2(1, 0), dir);
+
+            inipos = playerPos2D + (dir * attackStartPointOffset);
+            enemyHit = Physics2D.BoxCast(playerPos2D + (dir * attackStartPointOffset), new Vector2(0.1f, width), angle, dir, length, whatIsEnemies);
+
+            if (enemyHit.collider != null)
             {
-                Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3 circlePosDir = (mouseWorldPoint - playerPos.position).normalized * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
-                Vector2 attackPos = playerPos.position + circlePosDir;
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
-
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-
-                }
+                //dañar
             }
 
-            timeHeld = 0;
         }
-
     }
 }
