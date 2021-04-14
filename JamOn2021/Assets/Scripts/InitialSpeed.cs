@@ -17,6 +17,8 @@ public class InitialSpeed : MonoBehaviour
     public void setDirection(Vector2 dir)
     {
         direction = dir;
+        Quaternion wanted_rotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, wanted_rotation, 200 * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

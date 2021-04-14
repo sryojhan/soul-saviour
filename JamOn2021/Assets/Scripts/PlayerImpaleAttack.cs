@@ -15,12 +15,12 @@ public class PlayerImpaleAttack : MonoBehaviour
     Vector2 inipos;
     Vector2 dir;
 
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(inipos, dir * length);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawRay(inipos, dir * length);
+    //}
 
 
     // Update is called once per frame
