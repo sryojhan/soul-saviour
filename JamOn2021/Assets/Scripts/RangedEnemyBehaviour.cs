@@ -15,12 +15,15 @@ public class RangedEnemyBehaviour : MonoBehaviour
     [SerializeField] float cadence;
     [SerializeField] float minTimeValue;
     [SerializeField] float maxTimeValue;
+    [SerializeField] float interpolation;
 
     Vector3 initialPosition;
     Color originalColor;
 
     SpriteRenderer sp;
     Rigidbody2D rb;
+
+    private Rigidbody2D playerRb;
     private bool active;
     void Start()
     {
@@ -29,6 +32,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
         active = false;
         initialPosition = transform.position;
         originalColor = sp.color;
+        playerRb = player.GetComponent<Rigidbody2D>();
     }
 
     float time;
@@ -41,7 +45,12 @@ public class RangedEnemyBehaviour : MonoBehaviour
             if (time > cadence)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                bullet.GetComponent<InitialSpeed>().setDirection((player.transform.position - transform.position).normalized);
+                Vector3 playerPos = player.transform.position;
+
+
+
+                //playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);
+                bullet.GetComponent<InitialSpeed>().setDirection((playerPos - transform.position).normalized);
                 time = 0;
             }
         }

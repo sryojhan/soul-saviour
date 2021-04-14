@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InitialSpeed : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed;
+    public float bulletSpeed;
     Vector2 direction;
     Rigidbody2D rb;
     void Start()
@@ -12,7 +12,7 @@ public class InitialSpeed : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = direction.normalized * bulletSpeed * Time.fixedDeltaTime;
+        rb.velocity = direction.normalized * bulletSpeed;
     }
     public void setDirection(Vector2 dir)
     {
