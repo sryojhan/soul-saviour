@@ -120,21 +120,22 @@ public class MapGenerator : MonoBehaviour
         return rooms;
     }
 
-    //float t = 0;
-    //private void Update()
-    //{
-    //    t += Time.deltaTime;
+    float t = 0;
+    private void Update()
+    {
+        t += Time.deltaTime;
 
-    //    if (t > 1)
-    //    {
-    //        for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
+        if (t > 1)
+        {
+            for (int i = 0; i < scenery.childCount; i++) { Destroy(scenery.GetChild(i).gameObject); }
 
-    //        mainTileMap.ClearAllTiles();
-    //        walls.ClearAllTiles();
-    //        Start();
-    //        t = 0;
-    //    }
-    //}
+            mainTileMap.ClearAllTiles();
+            walls.ClearAllTiles();
+            Camera.main.GetComponent<ColorPalette>().ChangeColorHue();
+            Start();
+            t = 0;
+        }
+    }
 }
 
 public struct tileMaps
