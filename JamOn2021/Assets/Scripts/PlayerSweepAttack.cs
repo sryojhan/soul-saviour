@@ -39,7 +39,7 @@ public class PlayerSweepAttack : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (timeHeld >= holdMouseTime)
+            if (isHeldEnough())
             {
                 Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
