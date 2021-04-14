@@ -263,6 +263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+--- !u!1 &739594715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 308235693296909002, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+  m_PrefabInstance: {fileID: 233047860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1760817365
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1943de5d73521334682731f654b8d780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 739594715}
+  distanceToPlayer: 5
+  velocity: 10
 --- !u!61 &1760817371
 BoxCollider2D:
   m_ObjectHideFlags: 0

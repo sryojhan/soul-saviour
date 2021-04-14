@@ -147,10 +147,10 @@ MonoBehaviour:
   player: {fileID: 308235693296909002, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
   bulletPrefab: {fileID: 6921970537887382101, guid: b58015c372892d14cbd51a104250d816, type: 3}
   distanceToPlayer: 8
-  distanceToBeDeactivated: 15
-  backSpeed: 100
-  forwardSpeed: 150
-  deactivateSpeed: 250
+  distanceToBeDeactivated: 12
+  backSpeed: 2
+  forwardSpeed: 4
+  deactivateSpeed: 7
   cadence: 2
   minTimeValue: 1
   maxTimeValue: 3
