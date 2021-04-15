@@ -11,14 +11,15 @@ public class ShieldBehaviour : MonoBehaviour
 
     private int health = 100;
 
-    private void Start()
-    {
-        bossShield = GameObject.FindObjectOfType<BossShield>();
-    }
 
     public void setRay(GameObject r)
     {
         ray = r;
+    }
+
+    public void setBossShield(BossShield bS)
+    {
+        bossShield = bS;
     }
 
 

@@ -33,6 +33,7 @@ public class BossShield : MonoBehaviour
             GameObject ray = Instantiate(rayPrefab, shieldPositions[index].position, Quaternion.identity);
 
             shield.GetComponent<ShieldBehaviour>().setRay(ray);
+            shield.GetComponent<ShieldBehaviour>().setBossShield(this);
 
             float xScale = (shield.transform.position - transform.position).magnitude;
             Vector3 dir = (shield.transform.position - transform.position).normalized;
