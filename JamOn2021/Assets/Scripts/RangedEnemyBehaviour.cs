@@ -17,6 +17,8 @@ public class RangedEnemyBehaviour : MonoBehaviour
     [SerializeField] float maxTimeValue;
     [SerializeField] float interpolation;
 
+    [SerializeField] float bulletSpeed;
+
     Vector3 initialPosition;
     Color originalColor;
 
@@ -44,13 +46,26 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
             if (time > cadence)
             {
+
+                Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+
+                float playerAngle = Vector2.Angle(new Vector2(transform.position.x, transform.position.y) - playerPos, playerRb.velocity);
+
+                float auxAngle1 = Mathf.Asin(Mathf.Sin(playerAngle * Mathf.Deg2Rad) * (playerRb.velocity.magnitude / bulletSpeed));
+
+                float auxAngle2 = Vector2.Angle(Vector2.right, playerPos - new Vector2(transform.position.x, transform.position.y));
+
+                float shootAngle = auxAngle2 - auxAngle1 * Mathf.Rad2Deg;
+
+                if (player.transform.position.y < transform.position.y) shootAngle = -shootAngle;
+
+                print(shootAngle);
+
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                Vector3 playerPos = player.transform.position;
-
-
 
                 //playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);
-                bullet.GetComponent<InitialSpeed>().setDirection((playerPos - transform.position).normalized);
+                bullet.GetComponent<InitialSpeed>().setDirection((Quaternion.Euler(0, 0, shootAngle) * Vector2.right).normalized);
+
                 time = 0;
             }
         }
@@ -58,10 +73,10 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
     private float t;
     private bool wait;
-    
+
     private void FixedUpdate()
     {
-        Vector2  playerEnemyDirection = (player.transform.position - transform.position);
+        Vector2 playerEnemyDirection = (player.transform.position - transform.position);
         if (!active)
         {
             if (playerEnemyDirection.magnitude < distanceToPlayer)
@@ -98,10 +113,10 @@ public class RangedEnemyBehaviour : MonoBehaviour
             }
             else if (playerEnemyDirection.magnitude > distanceToPlayer + 1)
             {
-                if(playerEnemyDirection.magnitude > distanceToBeDeactivated)
+                if (playerEnemyDirection.magnitude > distanceToBeDeactivated)
                 {
-                    rb.velocity = -(transform.position-initialPosition).normalized * deactivateSpeed;
-                    if((transform.position-initialPosition).magnitude <= 0.5f)
+                    rb.velocity = -(transform.position - initialPosition).normalized * deactivateSpeed;
+                    if ((transform.position - initialPosition).magnitude <= 0.5f)
                     {
                         rb.velocity = Vector2.zero;
                         active = false;
