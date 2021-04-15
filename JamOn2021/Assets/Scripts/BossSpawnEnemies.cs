@@ -11,6 +11,8 @@ public class BossSpawnEnemies : MonoBehaviour
 
     [SerializeField] ContactFilter2D isBoss;
 
+    [SerializeField] BossBattle battle;
+
     private Vector2[] positions;
     private Collider2D[] colliders;
 
@@ -51,6 +53,7 @@ public class BossSpawnEnemies : MonoBehaviour
             usedIndexed.Add(indexPosition);
 
             // Instantiate(enemies[indexEnemy], spawnPositions[indexPosition]);
+            battle.StopAttack();
         }
     }
 }

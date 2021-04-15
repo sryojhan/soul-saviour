@@ -5,12 +5,11 @@ using UnityEngine;
 public class BossCircleAttack : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
-    bool isAttacking = false;
+    [SerializeField] BossBattle battle;
 
 
     IEnumerator Attack(int numProjectiles, int lados)
     {
-        isAttacking = true;
         double ang = 0;
         int count = 0;
         for (int i = 0; i < lados * numProjectiles; ++i)
@@ -29,7 +28,8 @@ public class BossCircleAttack : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
-        isAttacking = false;
+
+        battle.StopAttack();
     }
 
     public void AttackPhase1()
@@ -47,8 +47,4 @@ public class BossCircleAttack : MonoBehaviour
         StartCoroutine(Attack(6, 12));
     }
 
-    public bool isActive()
-    {
-        return isAttacking;
-    }
 }

@@ -8,6 +8,10 @@ public class BossShield : MonoBehaviour
     [SerializeField] GameObject shieldPrefab;
     [SerializeField] Transform[] shieldPositions;
 
+    [SerializeField] BossBattle battle;
+
+    [SerializeField] float basicAttackCadence;
+
     List<int> usedIndexes = new List<int>();
 
     int numShields = 0;
@@ -53,10 +57,11 @@ public class BossShield : MonoBehaviour
     public void DestroyShield()
     {
         numShields--;
+        if (numShields <= 0)
+        {
+            battle.StopAttack();
+            battle.StopShield();
+        }
     }
 
-    public bool isActive()
-    {
-        return numShields > 0;
-    }
 }

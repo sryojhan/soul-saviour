@@ -59,8 +59,6 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
                 if (player.transform.position.y < transform.position.y) shootAngle = -shootAngle;
 
-                print(shootAngle);
-
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
                 //playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);

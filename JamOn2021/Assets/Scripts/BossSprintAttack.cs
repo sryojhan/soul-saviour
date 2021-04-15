@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossSprintAttack : MonoBehaviour
 {
     [SerializeField] Transform playerPosition;
+    [SerializeField] BossBattle battle;
 
     [SerializeField] float speed;
     [SerializeField] float distance;
@@ -33,6 +34,7 @@ public class BossSprintAttack : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
+                battle.StopAttack();
             }
         }
     }
@@ -45,6 +47,7 @@ public class BossSprintAttack : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
+                battle.StopAttack();
             }
             else if (collision.gameObject.GetComponent<RangedEnemyBehaviour>())
             {
