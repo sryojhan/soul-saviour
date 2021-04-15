@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossSpawnEnemies : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] spawnPoints;
+    [SerializeField] GameObject[] spawnPoints = { null };
 
     [SerializeField] GameObject[] enemies;
 
@@ -18,13 +18,16 @@ public class BossSpawnEnemies : MonoBehaviour
 
     private void Start()
     {
-        positions = new Vector2[spawnPoints.Length];
-        colliders = new Collider2D[spawnPoints.Length];
-
-        for (int i = 0; i < spawnPoints.Length; ++i)
+        if (spawnPoints[0] != null)
         {
-            positions[i] = spawnPoints[i].GetComponent<Transform>().position;
-            colliders[i] = spawnPoints[i].GetComponent<Collider2D>();
+            positions = new Vector2[spawnPoints.Length];
+            colliders = new Collider2D[spawnPoints.Length];
+
+            for (int i = 0; i < spawnPoints.Length; ++i)
+            {
+                positions[i] = spawnPoints[i].GetComponent<Transform>().position;
+                colliders[i] = spawnPoints[i].GetComponent<Collider2D>();
+            }
         }
     }
 
@@ -44,7 +47,7 @@ public class BossSpawnEnemies : MonoBehaviour
                 colliders[indexPosition].OverlapCollider(isBoss, overlapsWithBoss);
             }
             while (overlapsWithBoss[0] != null && usedIndexed.Contains(indexPosition));
-            
+
             usedIndexed.Add(indexPosition);
 
             // Instantiate(enemies[indexEnemy], spawnPositions[indexPosition]);

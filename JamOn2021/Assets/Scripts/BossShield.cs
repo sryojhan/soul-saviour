@@ -10,13 +10,11 @@ public class BossShield : MonoBehaviour
 
     List<int> usedIndexes = new List<int>();
 
-    private void Start()
-    {
-        Spawn(3);
-    }
+    int numShields = 0;
 
     public void Spawn(int numEscudos)
     {
+        numShields = numEscudos;
         double ang = 0;
 
         for (int i = 0; i < numEscudos; ++i)
@@ -30,10 +28,34 @@ public class BossShield : MonoBehaviour
             while (usedIndexes.Contains(index));
             usedIndexes.Add(index);
 
-            Instantiate(shieldPrefab, shieldPositions[index].position,Quaternion.identity);
+            GameObject shield = Instantiate(shieldPrefab, shieldPositions[index].position, Quaternion.identity);
+
+            GameObject ray = Instantiate(rayPrefab, shieldPositions[index].position, Quaternion.identity);
+
+            shield.GetComponent<ShieldBehaviour>().setRay(ray);
+
+            float xScale = (shield.transform.position - transform.position).magnitude;
+            Vector3 dir = (shield.transform.position - transform.position).normalized;
+
+            Vector3 changeScale = new Vector3(xScale, -0.9f, 0);
+            ray.transform.localScale += changeScale;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            ray.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            ray.transform.position = transform.position + dir * (xScale / 2);
         }
 
         usedIndexes.Clear();
     }
 
+    public void DestroyShield()
+    {
+        numShields--;
+    }
+
+    public bool isActive()
+    {
+        return numShields > 0;
+    }
 }

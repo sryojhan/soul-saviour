@@ -30,7 +30,7 @@ public class BossSprintAttack : MonoBehaviour
         if (isSprinting)
         {
             if ((transform.position - startPos).magnitude >= distance)
-            {      
+            {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
             }
@@ -38,11 +38,18 @@ public class BossSprintAttack : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {       
-        if (collision.gameObject.GetComponent<PlayerSweepAttack>())
-        {         
-            rb.velocity = Vector2.zero;
-            isSprinting = false;
+    {
+        if (isSprinting)
+        {
+            if (collision.gameObject.GetComponent<PlayerSweepAttack>())
+            {
+                rb.velocity = Vector2.zero;
+                isSprinting = false;
+            }
+            else if (collision.gameObject.GetComponent<RangedEnemyBehaviour>())
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
