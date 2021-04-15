@@ -24,7 +24,7 @@ public class MapGenerator : MonoBehaviour
     {
         var tileMaps = new tileMaps { background = mainTileMap, walls = walls };
         var tileMap = new tileMap { ground = ground, wall = wall };
-        RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), tilesPerRoom, tilesPerRoom, tileMap, tileMaps);
+        RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), numberOfSpecialRooms, tilesPerRoom, tileMap, tileMaps);
         RoomManager.CreateInitialRoom(initial_room, tilesPerRoom, tileMap, tileMaps);
     }
 
