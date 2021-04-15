@@ -8,48 +8,42 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     [SerializeField] float velocity;
     [SerializeField] float distanceToAttack;
     [SerializeField] float deactivateSpeed;
-    [SerializeField] float attackRadius;
     [SerializeField] float cadence;
-    [SerializeField] LayerMask playerMask;
+    [SerializeField] float minTimeValue;
+    [SerializeField] float maxTimeValue;
 
-    LineRenderer line;
     private bool active;
     private bool attacking;
     Vector2 playerEnemyDirection;
     Vector3 initialPosition;
     Rigidbody2D rb;
+    GameObject circle;
+    SpriteRenderer spriteRenderer;
+    Transform circleTr;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        line = GetComponent<LineRenderer>();
         active = false;
-        createPoints();
+        circle = transform.GetChild(0).gameObject;
+        spriteRenderer = circle.GetComponent<SpriteRenderer>();
+        createCircle();
     }
 
-    void createPoints()
+    void setCircleAlpha(float alpha)
     {
-        line.positionCount = 361;
-        line.useWorldSpace = false;
-        float x;
-        float y;
-        float z = 0f;
-
-        float angle = 20f;
-
-        for (int i = 0; i < (360 + 1); i++)
-        {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * attackRadius;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * attackRadius;
-
-            line.SetPosition(i, new Vector3(x, y, z));
-
-            angle += (360f / 360);
-        }
+        Color col = spriteRenderer.color;
+        col.a = (alpha / 255);
+        spriteRenderer.color = col;
     }
-    public float getDistanceToAttack()
+    void createCircle()
     {
-        return attackRadius;
+        setCircleAlpha(40);
+        circleTr = circle.GetComponent<Transform>();
+        Vector3 a = circleTr.transform.localScale;
+        a.x = distanceToAttack * 2; a.y = distanceToAttack * 2;
+        circleTr.transform.localScale = a;
     }
 
     private float time;
@@ -58,7 +52,7 @@ public class SpecialEnemyBehaviour : MonoBehaviour
         playerEnemyDirection = (player.transform.position - transform.position);
         time += Time.deltaTime;
 
-        if(time > cadence)
+        if (time > cadence)
         {
             attack();
             time = 0;
@@ -66,21 +60,51 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     }
     void attack()
     {
+        setCircleAlpha(255);
+        Invoke("resetAlpha", 0.3f);
+
         if (attacking)
         {
-            
+            //restar vida al jugador
+            Debug.Log("AUCH");
         }
     }
+    void resetAlpha()
+    {
+        setCircleAlpha(40);
+    }
+
+    private float t;
+    private bool wait;
 
     private void FixedUpdate()
     {
         float mng = playerEnemyDirection.magnitude;
         if (!active)
         {
-            if(mng < distanceToPlayer)
+            if (mng < distanceToPlayer)
             {
                 initialPosition = transform.position;
                 active = true;
+            }
+            else
+            {
+                t += Time.deltaTime;
+                if (t > Random.Range(minTimeValue, maxTimeValue))
+                {
+                    if (!wait)
+                    {
+                        float x = Random.Range(-1.0f, 1.0f);
+                        float y = Random.Range(-1.0f, 1.0f);
+                        Vector2 dir = new Vector2(x, y);
+                        rb.velocity = dir.normalized * velocity;
+                    }
+                    else rb.velocity = Vector2.zero;
+
+                    wait = !wait;
+                    t = 0;
+                }
+
             }
         }
         else
@@ -95,7 +119,11 @@ public class SpecialEnemyBehaviour : MonoBehaviour
                         attacking = true;
                     }
                 }
-                else if (mng > distanceToAttack + 1 && attacking) attacking = false;
+                else if (mng > distanceToAttack && attacking)
+                {
+                    attacking = false;
+                    resetAlpha();
+                }
                 else rb.velocity = playerEnemyDirection.normalized * velocity;
             }
             else if (mng > distanceToPlayer + 1)
