@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 149926870}
   m_Layer: 0
-  m_Name: SpawnPoints
+  m_Name: ShieldSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149926869}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.3141434, y: 5.2039824, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 224581666}
   - {fileID: 2068100139}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224581665
 GameObject:
@@ -462,7 +462,7 @@ Transform:
   m_Children:
   - {fileID: 723351314}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1434287010
 MonoBehaviour:
@@ -772,7 +772,7 @@ Transform:
   m_LocalScale: {x: 2.3004632, y: 2.3004632, z: 2.3004632}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1646405160
 GameObject:

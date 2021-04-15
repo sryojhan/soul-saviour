@@ -5,7 +5,6 @@ using UnityEngine;
 
 public static class RoomManager
 {
-
     public enum RoomTypes
     {
         none, special, lava, holes, turrets, info
