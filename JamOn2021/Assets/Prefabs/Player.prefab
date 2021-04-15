@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa964549b30571e4191abb54c95f8ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 20
+  dashSpeed: 3
   dashDistance: 3
 --- !u!50 &308235693296909012
 Rigidbody2D:

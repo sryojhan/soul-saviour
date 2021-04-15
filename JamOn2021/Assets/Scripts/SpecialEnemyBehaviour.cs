@@ -8,7 +8,9 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     [SerializeField] float velocity;
     [SerializeField] float distanceToAttack;
     [SerializeField] float deactivateSpeed;
+    [SerializeField] float attackRadius;
     [SerializeField] float cadence;
+    [SerializeField] LayerMask playerMask;
 
     LineRenderer line;
     private bool active;
@@ -16,10 +18,6 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     Vector2 playerEnemyDirection;
     Vector3 initialPosition;
     Rigidbody2D rb;
-    GameObject circle;
-    SpriteRenderer sp;
-    Transform circleTr;
-    
 
     void Start()
     {
@@ -27,20 +25,6 @@ public class SpecialEnemyBehaviour : MonoBehaviour
         line = GetComponent<LineRenderer>();
         active = false;
         createPoints();
-        createCircle();
-    }
-    
-    void createCircle()
-    {
-        circle = transform.GetChild(0).gameObject;
-        sp = circle.GetComponent<SpriteRenderer>();
-        Color aux = sp.color;
-        aux.a = 100;
-        sp.color = aux;
-        circleTr = circle.GetComponent<Transform>();
-        Vector3 a = circleTr.transform.localScale;
-        a.x = distanceToAttack; a.y = distanceToAttack;
-        circleTr.transform.localScale = a;
     }
 
     void createPoints()
@@ -55,14 +39,19 @@ public class SpecialEnemyBehaviour : MonoBehaviour
 
         for (int i = 0; i < (360 + 1); i++)
         {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * distanceToAttack;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * distanceToAttack;
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * attackRadius;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * attackRadius;
 
             line.SetPosition(i, new Vector3(x, y, z));
 
             angle += (360f / 360);
         }
     }
+    public float getDistanceToAttack()
+    {
+        return attackRadius;
+    }
+
     private float time;
     void Update()
     {
@@ -106,10 +95,7 @@ public class SpecialEnemyBehaviour : MonoBehaviour
                         attacking = true;
                     }
                 }
-                else if (mng > distanceToAttack && attacking)
-                {
-                    attacking = false;
-                }
+                else if (mng > distanceToAttack + 1 && attacking) attacking = false;
                 else rb.velocity = playerEnemyDirection.normalized * velocity;
             }
             else if (mng > distanceToPlayer + 1)
