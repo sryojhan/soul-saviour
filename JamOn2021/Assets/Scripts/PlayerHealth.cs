@@ -13,20 +13,44 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isInvulnerable = false;
 
-
     public Image[] healthIcons;
 
+    [Header("Mask")]
+    public Transform mask;
 
+    public float maskMaxSize = 12;
+    public float maskSpeed = 1;
     private float t = 0;
     private float tick_timer = 0;
 
+    private bool dead = false;
+
+
+    private ColorPalette colorPalette;
     private SpriteRenderer sprite;
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+
+        if (mask)
+            mask.localScale = Vector3.zero;
+
+        colorPalette = Camera.main.GetComponent<ColorPalette>();
+
     }
     private void Update()
     {
+        if (dead)
+        {
+            if(mask)
+            mask.localScale = Vector3.one * maskMaxSize * t;
+            if (colorPalette)
+                colorPalette.ChangeColorSaturation(1 - t);
+            if ((t += Time.deltaTime * maskSpeed) > 1)
+                completeDeath();
+            return;
+        }
+
         if (isInvulnerable)
         {
             if ((t += Time.deltaTime) > invulneravilityTime)
@@ -73,5 +97,14 @@ public class PlayerHealth : MonoBehaviour
     public void die()
     {
         lifes = 0;
+        dead = true;
+        mask.position = transform.position;
+    }
+
+    private void completeDeath()
+    {
+        enabled = false;
+        //Camera.main.GetComponent<ColorPalette>().enabled = false;
+        print("i am dead");
     }
 }

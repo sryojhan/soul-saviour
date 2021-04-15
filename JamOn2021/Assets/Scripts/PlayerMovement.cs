@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool aDown = false, sDown = false, wDown = false, dDown = false, awDown = false, asDown = false, wdDown = false, sdDown = false;
 
-    float x = 0;
-    float y = 0;
+   // float x = 0;
+    //float y = 0;
     void Start() { 
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<PlayerDash>();
@@ -35,15 +35,15 @@ public class PlayerMovement : MonoBehaviour
             else if (Input.GetKey(KeyCode.W)) wDown = true;
             else if (Input.GetKey(KeyCode.D)) dDown = true;
 
-            x = Input.GetAxis("Horizontal");
-            y = Input.GetAxis("Vertical");
+          //  x = Input.GetAxis("Horizontal");
+         //   y = Input.GetAxis("Vertical");
         }
     }
     private void FixedUpdate()
     {
         if (!dash.enabled)
         {
-            rb.velocity = new Vector2(x, y).normalized * speed;
+      //      rb.velocity = new Vector2(x, y).normalized * speed;
 
 
             //DASH CON UTLIMA DIRECCION TOMANDA

@@ -73,13 +73,10 @@ Shader "Custom/ColorPalette"
 					fixed4 col = tex2D(_MainTex, i.uv);
 
 				if (col.r == col.g && col.g == col.b) {
-					//if (col.r <= _Treshold)
 					if (col.r >= 1)
-						//return _ContrastColor;
 					{
-
 						float v = (col.r + col.g + col.b) / 3;
-						float3 hsv = float3(_H, _S, v);
+						float3 hsv = float3(_H, 1, 1);
 
 						float3 rgb = hsv_to_rgb(hsv);
 						col.rgb = fixed4(rgb.r, rgb.g, rgb.b, 1);
