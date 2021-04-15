@@ -9,43 +9,60 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     [SerializeField] float distanceToAttack;
     [SerializeField] float deactivateSpeed;
     [SerializeField] float cadence;
-    [SerializeField] float minTimeValue;
-    [SerializeField] float maxTimeValue;
 
+    LineRenderer line;
     private bool active;
     private bool attacking;
     Vector2 playerEnemyDirection;
     Vector3 initialPosition;
     Rigidbody2D rb;
     GameObject circle;
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer sp;
     Transform circleTr;
     
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        line = GetComponent<LineRenderer>();
         active = false;
-        circle = transform.GetChild(0).gameObject;
-        spriteRenderer = circle.GetComponent<SpriteRenderer>();
+        createPoints();
         createCircle();
     }
     
-    void setCircleAlpha(float alpha)
-    {
-        Color col = spriteRenderer.color;
-        col.a = (alpha /255);
-        spriteRenderer.color = col;
-    }
     void createCircle()
     {
-        setCircleAlpha(40);
+        circle = transform.GetChild(0).gameObject;
+        sp = circle.GetComponent<SpriteRenderer>();
+        Color aux = sp.color;
+        aux.a = 100;
+        sp.color = aux;
         circleTr = circle.GetComponent<Transform>();
         Vector3 a = circleTr.transform.localScale;
-        a.x = distanceToAttack*2; a.y = distanceToAttack*2;
+        a.x = distanceToAttack; a.y = distanceToAttack;
         circleTr.transform.localScale = a;
     }
 
+    void createPoints()
+    {
+        line.positionCount = 361;
+        line.useWorldSpace = false;
+        float x;
+        float y;
+        float z = 0f;
+
+        float angle = 20f;
+
+        for (int i = 0; i < (360 + 1); i++)
+        {
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * distanceToAttack;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * distanceToAttack;
+
+            line.SetPosition(i, new Vector3(x, y, z));
+
+            angle += (360f / 360);
+        }
+    }
     private float time;
     void Update()
     {
@@ -60,22 +77,11 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     }
     void attack()
     {
-        setCircleAlpha(255);
-        Invoke("resetAlpha", 0.3f);
-
         if (attacking)
         {
-            //restar vida al jugador
-            Debug.Log("AUCH");
+            
         }
     }
-    void resetAlpha()
-    {
-        setCircleAlpha(40);
-    }
-
-    private float t;
-    private bool wait;
 
     private void FixedUpdate()
     {
@@ -86,25 +92,6 @@ public class SpecialEnemyBehaviour : MonoBehaviour
             {
                 initialPosition = transform.position;
                 active = true;
-            }
-            else
-            {
-                t += Time.deltaTime;
-                if (t > Random.Range(minTimeValue, maxTimeValue))
-                {
-                    if (!wait)
-                    {
-                        float x = Random.Range(-1.0f, 1.0f);
-                        float y = Random.Range(-1.0f, 1.0f);
-                        Vector2 dir = new Vector2(x, y);
-                        rb.velocity = dir.normalized * velocity;
-                    }
-                    else rb.velocity = Vector2.zero;
-
-                    wait = !wait;
-                    t = 0;
-                }
-
             }
         }
         else
@@ -122,7 +109,6 @@ public class SpecialEnemyBehaviour : MonoBehaviour
                 else if (mng > distanceToAttack && attacking)
                 {
                     attacking = false;
-                    resetAlpha();
                 }
                 else rb.velocity = playerEnemyDirection.normalized * velocity;
             }
