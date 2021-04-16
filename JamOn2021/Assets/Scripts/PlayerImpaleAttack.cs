@@ -11,9 +11,12 @@ public class PlayerImpaleAttack : MonoBehaviour
     [SerializeField] PlayerSweepAttack sweepComponent;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
+    [SerializeField] float cadence;
     RaycastHit2D enemyHit;
     Vector2 inipos;
     Vector2 dir;
+
+    float lastAttack = 0;
 
     //void OnDrawGizmos()
     //{
@@ -26,8 +29,10 @@ public class PlayerImpaleAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && !sweepComponent.isHeldEnough())
+        lastAttack += Time.deltaTime;
+        if (Input.GetMouseButtonUp(0) && !sweepComponent.isHeldEnough() && lastAttack >= cadence)
         {
+            lastAttack = 0;
             Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
 
