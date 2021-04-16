@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class InvokeBoss : MonoBehaviour
 {
-    [SerializeField] int numTorches;
+    [SerializeField] GameObject[] torches;
     [SerializeField] GameObject boss;
+
+    [SerializeField] Sprite lightedTorch;
+
+    int numTorches;
+
+    int indexAux = 0;
+
+    private void Start()
+    {
+        numTorches = torches.Length;
+    }
 
     public void lightTorch()
     {
-        numTorches--;
-        if (numTorches <= 0)
+        if (indexAux < torches.Length)
         {
-            invokeBoss();
+            numTorches--;
+            torches[indexAux].GetComponent<SpriteRenderer>().sprite = lightedTorch;
+            indexAux++;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) lightTorch();
     }
 
     void invokeBoss()
@@ -21,5 +38,15 @@ public class InvokeBoss : MonoBehaviour
         print("invoke boss");
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (numTorches <= 0)
+        {
+            if (collision.GetComponent<PlayerSweepAttack>())
+            {
+                invokeBoss();
+            }
+        }
+    }
 
 }

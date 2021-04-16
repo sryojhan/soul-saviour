@@ -213,6 +213,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &586268967
 BoxCollider2D:
@@ -390,6 +398,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &594261310
 BoxCollider2D:
@@ -624,6 +640,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &1222327360
 BoxCollider2D:
@@ -775,6 +799,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &1316819316
 BoxCollider2D:
@@ -877,6 +909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359066593}
   - component: {fileID: 1359066592}
+  - component: {fileID: 1359066594}
   m_Layer: 0
   m_Name: InvokeBoss
   m_TagString: Untagged
@@ -896,8 +929,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bfd2ac1002484382fe4e7e4bdd97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numTorches: 6
+  torches:
+  - {fileID: 586268965}
+  - {fileID: 1831229126}
+  - {fileID: 594261307}
+  - {fileID: 1316819313}
+  - {fileID: 1222327357}
+  - {fileID: 1586051591}
   boss: {fileID: 0}
+  lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!4 &1359066593
 Transform:
   m_ObjectHideFlags: 0
@@ -906,12 +946,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359066591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.07, y: 3.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1359066594
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359066591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.30704594, y: -0.32623637}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.377506, y: 1.6524727}
+  m_EdgeRadius: 0
 --- !u!1 &1586051591
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +1037,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &1586051594
 BoxCollider2D:
@@ -1122,6 +1196,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invoke: {fileID: 1359066592}
+  sRenderer: {fileID: 0}
+  theresPlayer: 0
+  lighted: 0
+  oriColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   lightedTorch: {fileID: 21300000, guid: 256e6c3ad6c425b4191990df18f1437b, type: 3}
 --- !u!61 &1831229129
 BoxCollider2D:
