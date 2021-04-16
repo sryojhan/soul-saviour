@@ -4,11 +4,14 @@ public class PlayerRangedAttack : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float cooldown;
+    [SerializeField] AudioClip clip;
+    AudioSource audioS;
 
     private float time;
     void Start()
     {
         time = cooldown;
+        audioS = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -34,5 +37,7 @@ public class PlayerRangedAttack : MonoBehaviour
         bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         bullet.GetComponent<InitialSpeed>().setDirection(bulletDir.normalized);
+
+        audioS.PlayOneShot(clip);
     }
 }
