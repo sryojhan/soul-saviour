@@ -12,6 +12,7 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
+    [SerializeField] AudioClip sound;
 
     private Vector2 attackPos;
 
@@ -49,8 +50,11 @@ public class PlayerSweepAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                   
+                    enemiesToDamage[i].GetComponent<EnemyLife>().attack(damage);
                 }
+
+                GetComponent<AudioSource>().PlayOneShot(sound);
+
             }
 
             timeHeld = 0;

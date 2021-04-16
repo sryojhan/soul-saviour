@@ -12,6 +12,9 @@ public class PlayerImpaleAttack : MonoBehaviour
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
     [SerializeField] float cadence;
+
+    [SerializeField] AudioClip sound;
+
     RaycastHit2D enemyHit;
     Vector2 inipos;
     Vector2 dir;
@@ -25,6 +28,10 @@ public class PlayerImpaleAttack : MonoBehaviour
     //    Gizmos.DrawRay(inipos, dir * length);
     //}
 
+    private void Start()
+    {
+        playerPos = this.transform;
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,6 +49,8 @@ public class PlayerImpaleAttack : MonoBehaviour
 
             inipos = playerPos2D + (dir * attackStartPointOffset);
             enemyHit = Physics2D.BoxCast(playerPos2D + (dir * attackStartPointOffset), new Vector2(0.1f, width), angle, dir, length, whatIsEnemies);
+
+            GetComponent<AudioSource>().PlayOneShot(sound);
 
             if (enemyHit.collider != null)
             {
