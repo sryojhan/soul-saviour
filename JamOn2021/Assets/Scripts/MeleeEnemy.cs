@@ -65,7 +65,7 @@ public class MeleeEnemy : MonoBehaviour
 
                 if (hit.collider != null)
                 {
-
+                    hit.collider.gameObject.GetComponent<PlayerHealth>().looseLife();
                 }
 
             }
