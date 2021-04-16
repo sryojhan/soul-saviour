@@ -452,6 +452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2512540669618111774, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
+      propertyPath: distance
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2512540669618111775, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -555,7 +559,7 @@ MonoBehaviour:
   playerPosition: {fileID: 0}
   battle: {fileID: 1572492338}
   speed: 6
-  distance: 15
+  distance: 7
   rb: {fileID: 1572492333}
 --- !u!50 &1572492333
 Rigidbody2D:

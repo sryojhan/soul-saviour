@@ -40,7 +40,7 @@ public class BossShield : MonoBehaviour
             float xScale = (shield.transform.position - transform.position).magnitude;
             Vector3 dir = (shield.transform.position - transform.position).normalized;
 
-            Vector3 changeScale = new Vector3(xScale, -0.9f, 0);
+            Vector3 changeScale = new Vector3(xScale - transform.localScale.x / 2, -0.9f, 0);
             ray.transform.localScale += changeScale;
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
