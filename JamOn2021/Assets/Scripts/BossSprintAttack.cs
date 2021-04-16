@@ -21,7 +21,7 @@ public class BossSprintAttack : MonoBehaviour
     {
         playerDirection = (playerPosition.position - transform.position).normalized;
         startPos = transform.position;
-        rb.AddForce(playerDirection * speed, ForceMode2D.Impulse);
+        rb.AddForce(playerDirection * speed * rb.mass, ForceMode2D.Impulse);
 
         isSprinting = true;
     }

@@ -17,7 +17,7 @@ public class PlayerDash : MonoBehaviour
     private void OnEnable()
     {
         initialPosition = transform.position;
-        rb.AddForce(pM.getDirection() * dashSpeed, ForceMode2D.Impulse);
+        rb.AddForce(pM.getDirection() * dashSpeed * rb.mass, ForceMode2D.Impulse);
     }
     private void OnDisable()
     {

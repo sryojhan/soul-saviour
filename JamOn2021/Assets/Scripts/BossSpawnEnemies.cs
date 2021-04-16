@@ -48,17 +48,17 @@ public class BossSpawnEnemies : MonoBehaviour
                 indexPosition = Random.Range(0, positions.Length);
                 colliders[indexPosition].OverlapCollider(isBoss, overlapsWithBoss);
             }
-            while (overlapsWithBoss[0] != null && usedIndexes.Contains(indexPosition));
+            while (overlapsWithBoss[0] != null || usedIndexes.Contains(indexPosition));
 
             usedIndexes.Add(indexPosition);
 
-            // Instantiate(enemies[indexEnemy], spawnPositions[indexPosition])
+            Instantiate(enemies[indexEnemy], new Vector3(positions[indexPosition].x, positions[indexPosition].y, 0), Quaternion.identity);
         }
         StartCoroutine(delayedStopAttack());
     }
     IEnumerator delayedStopAttack()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         usedIndexes.Clear();
         battle.StopAttack();
         StopCoroutine(delayedStopAttack());

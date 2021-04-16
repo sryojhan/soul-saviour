@@ -52,29 +52,29 @@ public class BossBattle : MonoBehaviour
     {
         int random = Random.Range(0, 100);
 
-        //if (random <= 30)
-        //{
-        //    int numEnemies = Random.Range((int)phase + 1, 4);
-        //    spawnEnemies.Spawn(numEnemies);
-        //}
-        //else if (random <= 60)
-        //{
-        //    sprintAttack.Attack();
-        //}
-        //else if (random <= 65)
-        //{
+        if (random <= 30)
+        {
+            int numEnemies = Random.Range((int)phase + 1, 4);
+            spawnEnemies.Spawn(numEnemies);
+        }
+        else if (random <= 60)
+        {
+            sprintAttack.Attack();
+        }
+        else if (random <= 65)
+        {
             shield.Spawn((int)phase + 1);
             isShielded = true;
-        //}
-        //else
-        //{
-        //    if (phase == Phase.PHASE1)
-        //        circleAttack.AttackPhase1();
-        //    if (phase == Phase.PHASE2)
-        //        circleAttack.AttackPhase2();
-        //    if (phase == Phase.PHASE3)
-        //        circleAttack.AttackPhase3();
-        //}
+        }
+        else
+        {
+            if (phase == Phase.PHASE1)
+                circleAttack.AttackPhase1();
+            if (phase == Phase.PHASE2)
+                circleAttack.AttackPhase2();
+            if (phase == Phase.PHASE3)
+                circleAttack.AttackPhase3();
+        }
 
         attacking = true;
     }

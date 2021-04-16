@@ -29,6 +29,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
     private bool active;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         active = false;
