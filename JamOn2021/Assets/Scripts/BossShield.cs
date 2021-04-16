@@ -10,8 +10,6 @@ public class BossShield : MonoBehaviour
 
     [SerializeField] BossBattle battle;
 
-    [SerializeField] float basicAttackCadence;
-
     List<int> usedIndexes = new List<int>();
 
     int numShields = 0;

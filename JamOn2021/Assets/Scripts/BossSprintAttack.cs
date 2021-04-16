@@ -26,7 +26,7 @@ public class BossSprintAttack : MonoBehaviour
         isSprinting = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isSprinting)
         {
@@ -34,7 +34,7 @@ public class BossSprintAttack : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
-                battle.StopAttack();
+                StartCoroutine(delayedStopAttack());
             }
         }
     }
@@ -47,12 +47,20 @@ public class BossSprintAttack : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
-                battle.StopAttack();
+                StartCoroutine(delayedStopAttack());
             }
             else if (collision.gameObject.GetComponent<RangedEnemyBehaviour>())
             {
                 Destroy(collision.gameObject);
             }
         }
+    }
+
+    IEnumerator delayedStopAttack()
+    {
+
+        yield return new WaitForSeconds(5);
+        battle.StopAttack();
+        StopCoroutine(delayedStopAttack());
     }
 }

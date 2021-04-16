@@ -16,9 +16,9 @@ public class BossSpawnEnemies : MonoBehaviour
     private Vector2[] positions;
     private Collider2D[] colliders;
 
-    List<int> usedIndexed = new List<int>();
+    List<int> usedIndexes = new List<int>();
 
-    private void Start()
+    private void Awake()
     {
         if (spawnPoints[0] != null)
         {
@@ -48,12 +48,20 @@ public class BossSpawnEnemies : MonoBehaviour
                 indexPosition = Random.Range(0, positions.Length);
                 colliders[indexPosition].OverlapCollider(isBoss, overlapsWithBoss);
             }
-            while (overlapsWithBoss[0] != null && usedIndexed.Contains(indexPosition));
+            while (overlapsWithBoss[0] != null && usedIndexes.Contains(indexPosition));
 
-            usedIndexed.Add(indexPosition);
+            usedIndexes.Add(indexPosition);
 
-            // Instantiate(enemies[indexEnemy], spawnPositions[indexPosition]);
-            battle.StopAttack();
+            // Instantiate(enemies[indexEnemy], spawnPositions[indexPosition])
         }
+        StartCoroutine(delayedStopAttack());
     }
+    IEnumerator delayedStopAttack()
+    {
+        yield return new WaitForSeconds(2);
+        usedIndexes.Clear();
+        battle.StopAttack();
+        StopCoroutine(delayedStopAttack());
+    }
+
 }

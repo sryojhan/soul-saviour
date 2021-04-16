@@ -34,9 +34,10 @@ public class BossBattle : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         phase = Phase.PHASE1;
         Battle();
+
     }
 
-    public void StopAttack() { attacking = false; }
+    public void StopAttack() { attacking = false; Battle(); }
     public void StopShield() { isShielded = false; shieldRecover = 0; }
 
     public void Hurt(int hp)
@@ -56,7 +57,10 @@ public class BossBattle : MonoBehaviour
             int numEnemies = Random.Range((int)phase + 1, 4);
             spawnEnemies.Spawn(numEnemies);
         }
-        else if (random <= 60) sprintAttack.Attack();
+        else if (random <= 60)
+        {
+            sprintAttack.Attack();
+        }
         else if (random <= 65)
         {
             shield.Spawn((int)phase + 1);
@@ -91,24 +95,18 @@ public class BossBattle : MonoBehaviour
 
         if (player.transform.position.y < transform.position.y) shootAngle = -shootAngle;
 
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Vector3 dir = (Quaternion.Euler(0, 0, shootAngle) * Vector2.right).normalized;
 
-        //playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);
-        bullet.GetComponent<InitialSpeed>().setDirection((Quaternion.Euler(0, 0, shootAngle) * Vector2.right).normalized);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + dir * 1.5f, Quaternion.identity);
+
+        // playerPos += Vector3.Lerp(Vector3.zero, playerRb.velocity, interpolation);
+        bullet.GetComponent<InitialSpeed>().setDirection(dir);
     }
 
     private void Update()
     {
         if (attacking)
         {
-            lastBasicAttack += Time.deltaTime;
-
-            if (lastBasicAttack >= basicAttackCadence)
-            {
-                BasicAttack();
-                lastBasicAttack = 0;
-            }
-
             if (isShielded)
             {
                 shieldRecover += Time.deltaTime;
@@ -120,9 +118,15 @@ public class BossBattle : MonoBehaviour
             }
 
         }
-        else
+
+
+        lastBasicAttack += Time.deltaTime;
+
+        if (lastBasicAttack >= basicAttackCadence)
         {
-            Battle();
+            BasicAttack();
+            lastBasicAttack = 0;
         }
+
     }
 }

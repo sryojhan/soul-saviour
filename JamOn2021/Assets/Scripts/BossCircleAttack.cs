@@ -7,6 +7,7 @@ public class BossCircleAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] BossBattle battle;
 
+    bool isAttacking = false;
 
     IEnumerator Attack(int numProjectiles, int lados)
     {
@@ -29,7 +30,9 @@ public class BossCircleAttack : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(3);
         battle.StopAttack();
+        StopCoroutine(Attack(numProjectiles, lados));
     }
 
     public void AttackPhase1()
