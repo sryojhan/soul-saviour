@@ -213,6 +213,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308235693296909000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: dashCadence
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 308235693296909001, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: dashSpeed
       value: 20

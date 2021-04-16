@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float dashCadence;
 
     private Vector2 direction;
     PlayerDash dash;
@@ -15,11 +16,22 @@ public class PlayerMovement : MonoBehaviour
         dash = GetComponent<PlayerDash>();
         direction = Vector2.zero;
     }
+
+    private float time;
     private void Update()
     {
+        time += Time.deltaTime;
+
         if (!dash.enabled)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) dash.enabled = true;
+            if (time > dashCadence)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    dash.enabled = true;
+                    time = 0;
+                }
+            }
 
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
