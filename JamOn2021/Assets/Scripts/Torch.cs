@@ -12,6 +12,8 @@ public class Torch : MonoBehaviour
 
     Color oriColor;
 
+    [SerializeField] Sprite lightedTorch;
+
 
     private void Awake()
     {
@@ -23,8 +25,9 @@ public class Torch : MonoBehaviour
     {
         if (theresPlayer && !lighted && Input.GetKeyDown(KeyCode.E)) // && player.hasSoul();
         {
+            sRenderer.sprite = lightedTorch;
+            sRenderer.color = oriColor;
             lighted = true;
-            print("torch lighted");
             invoke.lightTorch();
         }
     }
@@ -33,7 +36,8 @@ public class Torch : MonoBehaviour
     {
         if (collision.GetComponent<PlayerSweepAttack>())
         {
-            sRenderer.color = new Color(0.7f, 0.32f, 0.67f);
+            if (!lighted)
+                sRenderer.color = new Color(0.7f, 0.32f, 0.67f);
             theresPlayer = true;
         }
     }
