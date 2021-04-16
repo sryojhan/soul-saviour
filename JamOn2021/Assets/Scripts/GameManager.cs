@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public enum Escenas
 {
@@ -11,15 +9,26 @@ public enum Escenas
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    static public GameManager instance;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (instance == null) //si no hay instancia
+        {
+            instance = this; //la creamos
+            DontDestroyOnLoad(gameObject); //evitamos que se destruya entre escenas
+        }
+        else //en caso contrario
+        {
+            Destroy(gameObject); //destruimos la instancia
+        }
+    }
+    public void changeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void exit()
+    {
+        Application.Quit();
     }
 }
