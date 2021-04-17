@@ -33,6 +33,14 @@ public class PlayerBulletBehaviour : MonoBehaviour
                 enemy.GetComponent<MeleeEnemy>().setActive(true);
             }
         }
+        if (collision.gameObject.GetComponent<BossBattle>())
+        {
+            collision.gameObject.GetComponent<BossBattle>().Hurt((int)bulletDamage);
+        }
+        if (collision.gameObject.GetComponent<ShieldBehaviour>())
+        {
+            collision.gameObject.GetComponent<ShieldBehaviour>().Hurt(bulletDamage);
+        }
         Destroy(gameObject);
     }
 

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1195933654174102048}
   - component: {fileID: 9176925819035907085}
   - component: {fileID: 1165957975040640554}
-  m_Layer: 0
+  - component: {fileID: 2160922911222077142}
+  m_Layer: 6
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,4 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76771c433baf6d443b535a534f9b2ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossShield: {fileID: 2512540669618111769, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
+--- !u!114 &2160922911222077142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195933654174102049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc09d0de877c804d8c2847578729d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 5

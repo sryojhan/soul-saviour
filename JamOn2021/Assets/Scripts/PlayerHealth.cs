@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-
+           
         if (mask)
             mask.localScale = Vector3.zero;
 
@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         {
             isInvulnerable = true;
             --lifes;
-            healthIcons[lifes].color = Color.gray;
+           // healthIcons[lifes].color = Color.gray;
             if (lifes <= 0) { die(); return false; }
             return true;
         }

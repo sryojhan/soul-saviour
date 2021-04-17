@@ -42,10 +42,16 @@ public class BossBattle : MonoBehaviour
 
     public void Hurt(int hp)
     {
-        health -= hp;
+        if (!isShielded)
+        {
+            health -= hp;
 
-        if (health <= 50) phase = Phase.PHASE2;
-        else if (health <= 20) phase = Phase.PHASE3;
+
+            if (health <= 50) phase = Phase.PHASE2;
+            else if (health <= 20) phase = Phase.PHASE3;
+
+            if (health <= 0) Destroy(this.gameObject);
+        }
     }
 
     void Battle()
@@ -65,6 +71,7 @@ public class BossBattle : MonoBehaviour
         {
             shield.Spawn((int)phase + 1);
             isShielded = true;
+
         }
         else
         {

@@ -278,6 +278,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3106883739216746144, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3106883739216746144, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: cadence
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 308235693296909000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: speed
       value: 3
@@ -345,6 +353,18 @@ PrefabInstance:
     - target: {fileID: 308235693296909013, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: holdMouseTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
@@ -474,11 +494,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2512540669618111775, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
       propertyPath: m_Mass
-      value: 42.25
+      value: 251.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512540669618111775, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2512540669618111841, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512540669618111841, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01aa7becfd9672a40b29f3ebd853f88a, type: 3}
@@ -499,7 +527,7 @@ GameObject:
   - component: {fileID: 1572492331}
   - component: {fileID: 1572492330}
   - component: {fileID: 1572492338}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +617,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 42.25
+  m_Mass: 251.56
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -712,7 +740,7 @@ MonoBehaviour:
   basicAttackCadence: 5
   bulletSpeed: 20
   bulletPrefab: {fileID: 6921970537887382101, guid: b58015c372892d14cbd51a104250d816, type: 3}
-  restoreLifePerSecondWithShield: 5
+  restoreLifePerSecondWithShield: 1
 --- !u!1 &1646405160
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 308235693296909012}
   - component: {fileID: 308235693296909011}
   - component: {fileID: -2876797152261342405}
-  - component: {fileID: -2152501610114979047}
-  - component: {fileID: -4579331154473165108}
-  - component: {fileID: 8094517042365697164}
+  - component: {fileID: -2482398851691945252}
+  - component: {fileID: -3106883739216746144}
+  - component: {fileID: -2395213136893313472}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -142,6 +142,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 0
+  sound: {fileID: 8300000, guid: 629eb151ffed0e544ad905e96efc81e5, type: 3}
 --- !u!114 &308235693296909000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,8 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8543418923527509237, guid: f4d1e045a53efd94fa7dea971c28a92b, type: 3}
   cooldown: 3
-  clip: {fileID: 0}
---- !u!82 &-2152501610114979047
+  clip: {fileID: 8300000, guid: 7fb6aeb069fd7c04fbc50229e0b75b86, type: 3}
+--- !u!82 &-2482398851691945252
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +245,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -328,7 +329,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-4579331154473165108
+--- !u!114 &-3106883739216746144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308235693296909002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279ce229a8629714785f468b34a3914e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 1.2
+  width: 1.3
+  attackStartPointOffset: 0.5
+  playerPos: {fileID: 0}
+  sweepComponent: {fileID: 308235693296909015}
+  whatIsEnemies:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 0
+  cadence: 2
+  sound: {fileID: 8300000, guid: 0249a7e459147e147b7c5ef50746b778, type: 3}
+--- !u!114 &-2395213136893313472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,25 +371,3 @@ MonoBehaviour:
   mask: {fileID: 0}
   maskMaxSize: 12
   maskSpeed: 1
---- !u!114 &8094517042365697164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308235693296909002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 279ce229a8629714785f468b34a3914e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  length: 6
-  width: 0
-  attackStartPointOffset: 0
-  playerPos: {fileID: 0}
-  sweepComponent: {fileID: 0}
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 0
-  damage: 0
-  cadence: 0
