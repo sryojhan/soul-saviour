@@ -13,4 +13,9 @@ public class EnemyLife : MonoBehaviour
         life -= l;
         if (life <= 0) Destroy(gameObject);
     }
+
+    public float getLife()
+    {
+        return life;
+    }
 }

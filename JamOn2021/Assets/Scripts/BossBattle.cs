@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossBattle : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class BossBattle : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject bulletPrefab;
 
+    private HealthBarBehaviour healthBar;
     float lastBasicAttack = 0;
 
     [SerializeField] int restoreLifePerSecondWithShield = 5;
@@ -31,6 +34,7 @@ public class BossBattle : MonoBehaviour
 
     void Start()
     {
+        healthBar = GetComponent<HealthBarBehaviour>();
         player = GameObject.FindWithTag("Player");
         phase = Phase.PHASE1;
         Battle();
@@ -40,12 +44,16 @@ public class BossBattle : MonoBehaviour
     public void StopAttack() { attacking = false; Battle(); }
     public void StopShield() { isShielded = false; shieldRecover = 0; }
 
+    public float getHealth()
+    {
+        return health;
+    }
     public void Hurt(int hp)
     {
         if (!isShielded)
         {
             health -= hp;
-
+            healthBar.setSliderValue(health);
 
             if (health <= 50) phase = Phase.PHASE2;
             else if (health <= 20) phase = Phase.PHASE3;

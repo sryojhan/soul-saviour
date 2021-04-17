@@ -54,7 +54,6 @@ public class PlayerImpaleAttack : MonoBehaviour
 
             if (enemyHit.collider != null)
             {
-                enemyHit.collider.GetComponent<EnemyLife>().attack(damage);
                 if (enemyHit.collider.gameObject.GetComponent<BossBattle>())
                 {
                     enemyHit.collider.gameObject.GetComponent<BossBattle>().Hurt((int)damage);
