@@ -3,15 +3,7 @@ using UnityEngine;
 public class EnemyLife : MonoBehaviour
 {
     [SerializeField] float life;
-    void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        
-    }
     public bool alive()
     {
         return life > 0;

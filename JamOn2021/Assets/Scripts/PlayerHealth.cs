@@ -70,8 +70,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) looseLife();
-       // if (Input.GetKeyDown(KeyCode.E)) restoreLife();
     }
 
     public bool looseLife()
@@ -80,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
         {
             isInvulnerable = true;
             --lifes;
-           // healthIcons[lifes].color = Color.gray;
+            healthIcons[lifes].color = Color.gray;
             if (lifes <= 0) { die(); return false; }
             return true;
         }

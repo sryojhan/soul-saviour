@@ -22,6 +22,7 @@ public class PlayerBulletBehaviour : MonoBehaviour
             if (enemy.GetComponent<EnemyLife>().alive() && !enemy.GetComponent<RangedEnemyBehaviour>().isActive())
             {
                 enemy.GetComponent<RangedEnemyBehaviour>().setActive(true);
+                Debug.Log("asdf");
             }
         }
         else if(collision.gameObject.GetComponent<MeleeEnemy>() != null)
