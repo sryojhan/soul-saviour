@@ -13,6 +13,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float viewDistance;
     [SerializeField] float pauseTime;
+    [SerializeField] float pauseBeforeAttack;
+    [SerializeField] float attackActiveTime;
 
     float attackDistance;
 
@@ -24,7 +26,14 @@ public class MeleeEnemy : MonoBehaviour
     float lastAttack = 0;
     bool pause = false;
     float lastPause = 0;
+
+    float attackPause = 0;
+
     bool active = false;
+    float activeCounter = 0;
+
+    public void setActive(bool a) { active = a; }
+    public bool isActive() { return active; }
 
     void OnDrawGizmos()
     {
@@ -33,17 +42,9 @@ public class MeleeEnemy : MonoBehaviour
         Gizmos.DrawRay(inipos, dir * length);
     }
 
-    public bool isActive()
-    {
-        return active;
-    }
-
-    public void setActive(bool act)
-    {
-        active = act;
-    }
     private void Start()
     {
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         attackDistance = length * 0.75f;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -53,12 +54,22 @@ public class MeleeEnemy : MonoBehaviour
     {
         lastAttack += Time.deltaTime;
 
+        if ((transform.position - playerPos.position).magnitude <= length) attackPause += Time.deltaTime;
+
+        if (active) activeCounter += Time.deltaTime;
+        if (activeCounter >= attackActiveTime)
+        {
+            active = false;
+            activeCounter = 0;
+        }
+
         if ((transform.position - playerPos.position).magnitude <= attackDistance)
         {
-            active = true;
+
             rb.velocity = Vector2.zero;
-            if (lastAttack >= cadence)
+            if (lastAttack >= cadence && attackPause >= pauseBeforeAttack)
             {
+                attackPause = 0;
                 pause = true;
                 lastAttack = 0;
                 Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
@@ -97,7 +108,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (!pause)
         {
-            if ((transform.position - playerPos.position).magnitude <= viewDistance)
+            if ((transform.position - playerPos.position).magnitude <= viewDistance || active)
             {
                 if ((transform.position - playerPos.position).magnitude > attackDistance)
                 {
@@ -105,6 +116,7 @@ public class MeleeEnemy : MonoBehaviour
                 }
 
             }
+            else rb.velocity = Vector2.zero;
         }
     }
 }
