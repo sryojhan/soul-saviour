@@ -45,7 +45,7 @@ public class PlayerImpaleAttack : MonoBehaviour
 
             if (enemyHit.collider != null)
             {
-                //dañar
+                enemyHit.collider.GetComponent<EnemyLife>().attack(damage);
             }
 
         }

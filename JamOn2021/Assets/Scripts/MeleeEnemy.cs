@@ -26,6 +26,7 @@ public class MeleeEnemy : MonoBehaviour
     float lastAttack = 0;
     bool pause = false;
     float lastPause = 0;
+    bool active = false;
 
     void OnDrawGizmos()
     {
@@ -34,6 +35,15 @@ public class MeleeEnemy : MonoBehaviour
         Gizmos.DrawRay(inipos, dir * length);
     }
 
+    public bool isActive()
+    {
+        return active;
+    }
+
+    public void setActive(bool act)
+    {
+        active = act;
+    }
     private void Start()
     {
         attackDistance = length * 0.75f;
@@ -47,6 +57,7 @@ public class MeleeEnemy : MonoBehaviour
 
         if ((transform.position - playerPos.position).magnitude <= attackDistance)
         {
+            active = true;
             rb.velocity = Vector2.zero;
             if (lastAttack >= cadence)
             {

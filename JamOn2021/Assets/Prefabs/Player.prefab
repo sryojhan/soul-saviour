@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 308235693296909011}
   - component: {fileID: -2876797152261342405}
   - component: {fileID: -2152501610114979047}
+  - component: {fileID: -4579331154473165108}
+  - component: {fileID: 8094517042365697164}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -326,3 +328,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4579331154473165108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308235693296909002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9f41761511c4c4f8ace3a739c0db87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifes: 3
+  invulneravilityTime: 1
+  numberOfTicks: 10
+  healthIcons: []
+  mask: {fileID: 0}
+  maskMaxSize: 12
+  maskSpeed: 1
+--- !u!114 &8094517042365697164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308235693296909002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279ce229a8629714785f468b34a3914e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 6
+  width: 0
+  attackStartPointOffset: 0
+  playerPos: {fileID: 0}
+  sweepComponent: {fileID: 0}
+  whatIsEnemies:
+    serializedVersion: 2
+    m_Bits: 0
+  damage: 0
+  cadence: 0

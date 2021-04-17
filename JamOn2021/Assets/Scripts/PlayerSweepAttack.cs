@@ -49,7 +49,11 @@ public class PlayerSweepAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                   
+                    EnemyLife enemyLife = enemiesToDamage[i].gameObject.GetComponent<EnemyLife>();
+                    if(enemyLife != null)
+                    {
+                        enemyLife.attack(damage);
+                    }
                 }
             }
 

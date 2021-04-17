@@ -170,7 +170,7 @@ MonoBehaviour:
   damage: 0
   cadence: 2
   moveSpeed: 2
-  viewDistance: 4
+  viewDistance: 8
   pauseTime: 1.47
 --- !u!114 &2957771335948800671
 MonoBehaviour:

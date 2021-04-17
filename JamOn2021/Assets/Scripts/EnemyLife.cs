@@ -12,7 +12,10 @@ public class EnemyLife : MonoBehaviour
     {
         
     }
-    
+    public bool alive()
+    {
+        return life > 0;
+    }
     public void attack(float l)
     {
         life -= l;

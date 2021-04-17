@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) looseLife();
-        if (Input.GetKeyDown(KeyCode.E)) restoreLife();
+       // if (Input.GetKeyDown(KeyCode.E)) restoreLife();
     }
 
     public bool looseLife()

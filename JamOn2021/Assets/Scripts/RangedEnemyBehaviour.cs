@@ -38,6 +38,15 @@ public class RangedEnemyBehaviour : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
     }
 
+     public bool isActive()
+    {
+        return active;
+    }
+    public void setActive(bool act)
+    {
+        active = act;
+    }
+
     float time;
     void Update()
     {
