@@ -128,6 +128,7 @@ MonoBehaviour:
   cadence: 3
   minTimeValue: 1
   maxTimeValue: 3
+  audioClip: {fileID: 0}
 --- !u!61 &7086443479823510347
 BoxCollider2D:
   m_ObjectHideFlags: 0

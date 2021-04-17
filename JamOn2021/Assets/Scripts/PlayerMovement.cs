@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     dash.enabled = true;
+                    SoundManager.instance.dashSound();
                     time = 0;
                 }
             }

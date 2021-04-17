@@ -3,15 +3,7 @@ using UnityEngine;
 public class PlayerBulletBehaviour : MonoBehaviour
 {
     [SerializeField] float bulletDamage;
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject enemy = collision.gameObject;
@@ -22,7 +14,6 @@ public class PlayerBulletBehaviour : MonoBehaviour
             if (enemy.GetComponent<EnemyLife>().alive() && !enemy.GetComponent<RangedEnemyBehaviour>().isActive())
             {
                 enemy.GetComponent<RangedEnemyBehaviour>().setActive(true);
-                Debug.Log("asdf");
             }
         }
         else if(collision.gameObject.GetComponent<MeleeEnemy>() != null)
@@ -42,6 +33,7 @@ public class PlayerBulletBehaviour : MonoBehaviour
         {
             collision.gameObject.GetComponent<ShieldBehaviour>().Hurt(bulletDamage);
         }
+        SoundManager.instance.playerBulletSound();
         Destroy(gameObject);
     }
 

@@ -156,6 +156,7 @@ MonoBehaviour:
   minTimeValue: 1
   maxTimeValue: 3
   interpolation: 0
+  audioClip: {fileID: 8300000, guid: 73b3de954ff2bda45b06ec66d38753ec, type: 3}
   bulletSpeed: 20
 --- !u!114 &-7059148607806362817
 MonoBehaviour:

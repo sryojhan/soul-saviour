@@ -12,7 +12,6 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
-    [SerializeField] AudioClip sound;
 
     private Vector2 attackPos;
 
@@ -63,9 +62,7 @@ public class PlayerSweepAttack : MonoBehaviour
                         enemiesToDamage[i].gameObject.GetComponent<EnemyLife>().attack(damage);
                     }
                 }
-
-                GetComponent<AudioSource>().PlayOneShot(sound);
-
+                SoundManager.instance.sweepSound();
             }
 
             timeHeld = 0;

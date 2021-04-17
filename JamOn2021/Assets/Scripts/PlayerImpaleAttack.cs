@@ -13,8 +13,6 @@ public class PlayerImpaleAttack : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] float cadence;
 
-    [SerializeField] AudioClip sound;
-
     RaycastHit2D enemyHit;
     Vector2 inipos;
     Vector2 dir;
@@ -50,7 +48,7 @@ public class PlayerImpaleAttack : MonoBehaviour
             inipos = playerPos2D + (dir * attackStartPointOffset);
             enemyHit = Physics2D.BoxCast(playerPos2D + (dir * attackStartPointOffset), new Vector2(0.1f, width), angle, dir, length, whatIsEnemies);
 
-            GetComponent<AudioSource>().PlayOneShot(sound);
+            SoundManager.instance.impaleSound();
 
             if (enemyHit.collider != null)
             {
