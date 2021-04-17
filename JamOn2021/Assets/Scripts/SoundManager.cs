@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     static public SoundManager instance;
-    enum clipsNames { PlayerBullet, Dash, Impale, Sweep, PlayerShot};
+    enum clipsNames { PlayerBullet, Dash, Impale, Sweep, PlayerShot, EnemyDeath, PutTorch, SpecialEnemyAttack, BossIntatiateEnemies, EnemyShoot};
     [SerializeField] AudioClip[] clips;
     private AudioSource audioSource;
 
@@ -42,5 +42,27 @@ public class SoundManager : MonoBehaviour
     public void playerShot()
     {
         audioSource.PlayOneShot(clips[(int)clipsNames.PlayerShot]);
+    }
+    public void enemyDeath()
+    {
+        audioSource.PlayOneShot(clips[(int)clipsNames.EnemyDeath]);
+    }
+    public void putTorch()
+    {
+        audioSource.PlayOneShot(clips[(int)clipsNames.PutTorch]);
+
+    }
+    public void specialEnemyAttack()
+    {
+        audioSource.PlayOneShot(clips[(int)clipsNames.SpecialEnemyAttack]);
+
+    }
+    public void bossInstantiateEnemies()
+    {
+        audioSource.PlayOneShot(clips[(int)clipsNames.BossIntatiateEnemies]);
+    }
+    public void enemyShoot()
+    {
+        audioSource.PlayOneShot(clips[(int)clipsNames.EnemyShoot]);
     }
 }

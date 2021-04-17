@@ -420,7 +420,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1914d701a5e0ce4448a14c20a583b706, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -572,7 +572,6 @@ MonoBehaviour:
   basicAttackCadence: 5
   bulletSpeed: 20
   bulletPrefab: {fileID: 6921970537887382101, guid: b58015c372892d14cbd51a104250d816, type: 3}
-  audioClip: {fileID: 8300000, guid: 73b3de954ff2bda45b06ec66d38753ec, type: 3}
   restoreLifePerSecondWithShield: 1
 --- !u!82 &3153396693940217825
 AudioSource:

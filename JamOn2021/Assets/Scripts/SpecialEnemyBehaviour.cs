@@ -62,6 +62,7 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     }
     void attack()
     {
+        if(GetComponent<Renderer>().isVisible) SoundManager.instance.specialEnemyAttack();
         setCircleAlpha(255);
         Invoke("resetAlpha", 0.3f);
 

@@ -11,7 +11,11 @@ public class EnemyLife : MonoBehaviour
     public void attack(float l)
     {
         life -= l;
-        if (life <= 0) Destroy(gameObject);
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+            SoundManager.instance.enemyDeath();
+        }
     }
 
     public float getLife()

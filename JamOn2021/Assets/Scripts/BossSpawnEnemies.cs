@@ -36,6 +36,8 @@ public class BossSpawnEnemies : MonoBehaviour
 
     public void Spawn(int numEnemies)
     {
+
+        SoundManager.instance.bossInstantiateEnemies();
         for (int i = 0; i < numEnemies; ++i)
         {
             int indexEnemy = Random.Range(0, enemies.Length);

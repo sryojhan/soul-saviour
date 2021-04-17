@@ -25,12 +25,16 @@ public class InvokeBoss : MonoBehaviour
             numTorches--;
             torches[indexAux].GetComponent<SpriteRenderer>().sprite = lightedTorch;
             indexAux++;
+            SoundManager.instance.putTorch();
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) lightTorch();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            lightTorch();
+        }
     }
 
     void invokeBoss()
