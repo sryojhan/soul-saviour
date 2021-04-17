@@ -109,7 +109,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 0.5754717, g: 0.38220006, b: 0.38220006, a: 1}
   m_FlipX: 0
@@ -141,7 +141,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 10
-  sound: {fileID: 8300000, guid: 629eb151ffed0e544ad905e96efc81e5, type: 3}
 --- !u!114 &308235693296909000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   dashCadence: 0.5
-  dashSound: {fileID: 8300000, guid: 39c95cde8ce687445a08ee64750ce809, type: 3}
 --- !u!114 &308235693296909001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8543418923527509237, guid: f4d1e045a53efd94fa7dea971c28a92b, type: 3}
   cooldown: 3
-  clip: {fileID: 8300000, guid: 7fb6aeb069fd7c04fbc50229e0b75b86, type: 3}
 --- !u!114 &-3106883739216746144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +252,6 @@ MonoBehaviour:
     m_Bits: 64
   damage: 20
   cadence: 2
-  sound: {fileID: 8300000, guid: 0249a7e459147e147b7c5ef50746b778, type: 3}
 --- !u!114 &-2395213136893313472
 MonoBehaviour:
   m_ObjectHideFlags: 0
