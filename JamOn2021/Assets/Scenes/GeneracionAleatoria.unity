@@ -1375,8 +1375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1802578613}
-  numberOfRooms: 10
-  numberOfSpecialRooms: 3
+  numberOfRooms: 50
+  numberOfSpecialRooms: 10
   scenery: {fileID: 159295934}
   tilesPerRoom: 11
   mainTileMap: {fileID: 432465961}

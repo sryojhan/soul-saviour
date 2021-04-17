@@ -120,7 +120,7 @@ public class MapGenerator : MonoBehaviour
         return rooms;
     }
 
-    float t = 0;
+    /*float t = 0;
     private void Update()
     {
         t += Time.deltaTime;
@@ -135,7 +135,7 @@ public class MapGenerator : MonoBehaviour
             Start();
             t = 0;
         }
-    }
+    }*/
 }
 
 public struct tileMaps
