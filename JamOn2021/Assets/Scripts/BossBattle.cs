@@ -128,6 +128,7 @@ public class BossBattle : MonoBehaviour
                 if (shieldRecover >= 1)
                 {
                     health += restoreLifePerSecondWithShield;
+                    healthBar.setSliderValue(health);
                     shieldRecover = 0;
                 }
             }
