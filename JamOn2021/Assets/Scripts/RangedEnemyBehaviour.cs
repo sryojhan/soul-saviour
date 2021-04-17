@@ -56,7 +56,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
             if (time > cadence)
             {
-                //if (GetComponent<Renderer>().isVisible) SoundManager.instance.playerShot();
+                if (GetComponent<Renderer>().isVisible) SoundManager.instance.enemyShoot();
 
                 Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
 

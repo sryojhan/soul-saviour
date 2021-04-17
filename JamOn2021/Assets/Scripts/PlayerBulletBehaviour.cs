@@ -33,7 +33,7 @@ public class PlayerBulletBehaviour : MonoBehaviour
         {
             collision.gameObject.GetComponent<ShieldBehaviour>().Hurt(bulletDamage);
         }
-        SoundManager.instance.playerBulletSound();
+        if (GetComponent<Renderer>().isVisible) SoundManager.instance.playerBulletSound();
         Destroy(gameObject);
     }
 
