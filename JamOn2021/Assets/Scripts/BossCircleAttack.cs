@@ -7,8 +7,6 @@ public class BossCircleAttack : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] BossBattle battle;
 
-    bool isAttacking = false;
-
     IEnumerator Attack(int numProjectiles, int lados)
     {
         double ang = 0;

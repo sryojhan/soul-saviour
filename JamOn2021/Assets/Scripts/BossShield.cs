@@ -17,7 +17,6 @@ public class BossShield : MonoBehaviour
     public void Spawn(int numEscudos)
     {
         numShields = numEscudos;
-        double ang = 0;
 
         for (int i = 0; i < numEscudos; ++i)
         {
