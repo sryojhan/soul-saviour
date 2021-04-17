@@ -20,11 +20,13 @@ public class SpecialEnemyBehaviour : MonoBehaviour
     GameObject circle;
     SpriteRenderer spriteRenderer;
     Transform circleTr;
+    PlayerHealth playerHealth;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         active = false;
         circle = transform.GetChild(0).gameObject;
         spriteRenderer = circle.GetComponent<SpriteRenderer>();
@@ -65,8 +67,7 @@ public class SpecialEnemyBehaviour : MonoBehaviour
 
         if (attacking)
         {
-            //restar vida al jugador
-            Debug.Log("AUCH");
+            playerHealth.looseLife();
         }
     }
     void resetAlpha()

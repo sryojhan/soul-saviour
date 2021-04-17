@@ -141,7 +141,7 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 64
-  damage: 0
+  damage: 10
   sound: {fileID: 8300000, guid: 629eb151ffed0e544ad905e96efc81e5, type: 3}
 --- !u!114 &308235693296909000
 MonoBehaviour:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  dashCadence: 0
+  dashCadence: 0.5
 --- !u!114 &308235693296909001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 64
-  damage: 0
+  damage: 20
   cadence: 2
   sound: {fileID: 8300000, guid: 0249a7e459147e147b7c5ef50746b778, type: 3}
 --- !u!114 &-2395213136893313472
@@ -367,7 +367,10 @@ MonoBehaviour:
   lifes: 3
   invulneravilityTime: 1
   numberOfTicks: 10
-  healthIcons: []
+  healthIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   mask: {fileID: 0}
   maskMaxSize: 12
   maskSpeed: 1
