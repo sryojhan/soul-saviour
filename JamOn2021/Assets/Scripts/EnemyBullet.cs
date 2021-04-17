@@ -12,6 +12,6 @@ public class EnemyBullet : MonoBehaviour
             p.looseLife();
         }
 
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

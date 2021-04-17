@@ -50,7 +50,18 @@ public class PlayerSweepAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos, attackRange, whatIsEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<EnemyLife>().attack(damage);
+                    if (enemiesToDamage[i].gameObject.GetComponent<BossBattle>())
+                    {
+                        enemiesToDamage[i].gameObject.GetComponent<BossBattle>().Hurt((int)damage);
+                    }
+                    else if (enemiesToDamage[i].gameObject.GetComponent<ShieldBehaviour>())
+                    {
+                        enemiesToDamage[i].gameObject.GetComponent<ShieldBehaviour>().Hurt(damage);
+                    }
+                    else
+                    {
+                        enemiesToDamage[i].gameObject.GetComponent<EnemyLife>().attack(damage);
+                    }
                 }
 
                 GetComponent<AudioSource>().PlayOneShot(sound);

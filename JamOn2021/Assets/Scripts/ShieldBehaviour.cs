@@ -9,7 +9,7 @@ public class ShieldBehaviour : MonoBehaviour
     GameObject ray;
 
 
-    private int health = 100;
+    private float health = 5;
 
 
     public void setRay(GameObject r)
@@ -23,18 +23,16 @@ public class ShieldBehaviour : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Hurt(float dmg )
     {
-        if (collision.gameObject.GetComponent<InitialSpeed>())
-        {
-            health -= 20;
+        health -= dmg;
 
-            if (health <= 0)
-            {
-                bossShield.DestroyShield();
-                Destroy(ray);
-                Destroy(this.gameObject);
-            }
+        if (health <= 0)
+        {
+            Destroy(ray.gameObject);
+            Destroy(gameObject);
+            bossShield.DestroyShield();
         }
+
     }
 }
