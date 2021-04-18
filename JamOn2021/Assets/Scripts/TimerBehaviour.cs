@@ -16,7 +16,7 @@ public class TimerBehaviour : MonoBehaviour
         if (instance == null) //si no hay instancia
         {
             instance = this; //la creamos
-            DontDestroyOnLoad(gameObject); //evitamos que se destruya entre escenas
+          //  DontDestroyOnLoad(gameObject); //evitamos que se destruya entre escenas
         }
         else //en caso contrario
         {
@@ -43,6 +43,7 @@ public class TimerBehaviour : MonoBehaviour
     public void Finnish()
     {
         finnish = true;
+
         finnishText.text = timerText.text;
         panel.SetActive(true);
         GameObject [] enemies = GameObject.FindGameObjectsWithTag("Enemy");

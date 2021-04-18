@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     public void changeScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        canvas.SetActive(true);
+
         Time.timeScale = 1;
     }
     public void exit()
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
     public void backToMenu()
     {
         SceneManager.LoadScene(0);
-        Debug.Log("asdf");
-        canvas.SetActive(false);
     }
+
 }
