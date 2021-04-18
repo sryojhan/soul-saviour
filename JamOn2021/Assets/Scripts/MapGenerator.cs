@@ -9,9 +9,10 @@ public class MapGenerator : MonoBehaviour
     public GameObject prefab;
 
     [SerializeField] GameObject[] torches;
+    [SerializeField] GameObject[] enemies;
 
     public int numberOfRooms = 5;
-    public int numberOfSpecialRooms = 3;
+    public int numberOfSpecialRooms = 6;
     public Transform scenery;
 
     public int tilesPerRoom = 10;
@@ -100,6 +101,16 @@ public class MapGenerator : MonoBehaviour
             var room = Instantiate(prefab, (Vector2)v * tilesPerRoom, Quaternion.identity, scenery).GetComponent<Room>();
             rooms[i] = room;
 
+
+            int numEnemies = Random.Range(1, 3);
+
+            for (int j = 0; j < numEnemies && room != initial_room; j++)
+            {
+                int rnd = Random.Range(0, enemies.Length - 1);
+                Instantiate(enemies[rnd], room.transform.position, Quaternion.identity);
+            }
+
+
             dic.Add(v, room);
             for (int c = 0; c < roomList.Count; c++)
             {
@@ -130,6 +141,19 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < numberOfSpecialRooms; ++i)
+        {
+            int rndRoom;
+            do
+            {
+                rndRoom = Random.Range(0, rooms.Length);
+            }
+            while (rooms[rndRoom] == initial_room);
+
+            Instantiate(enemies[2], rooms[rndRoom].transform.position, Quaternion.identity);
+        }
+
         return rooms;
     }
 

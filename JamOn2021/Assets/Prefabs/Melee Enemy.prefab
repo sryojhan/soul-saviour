@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 2218648847188748670}
   - component: {fileID: 2218648847188748669}
   - component: {fileID: 2218648847188748668}
-  - component: {fileID: 3964505666354002364}
+  - component: {fileID: -5427187725343896372}
   - component: {fileID: 2957771335948800640}
-  - component: {fileID: 2957771335948800671}
   m_Layer: 6
   m_Name: Melee Enemy
   m_TagString: Untagged
@@ -135,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3964505666354002364
+--- !u!114 &-5427187725343896372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,19 +173,6 @@ MonoBehaviour:
   pauseTime: 1.47
   pauseBeforeAttack: 0
   attackActiveTime: 0
---- !u!114 &2957771335948800671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218648847188748665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc09d0de877c804d8c2847578729d97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 10
 --- !u!1 &2957771336103031462
 GameObject:
   m_ObjectHideFlags: 0
