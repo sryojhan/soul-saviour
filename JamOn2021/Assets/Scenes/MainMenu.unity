@@ -949,8 +949,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1290244558}
   - component: {fileID: 1290244560}
-  - component: {fileID: 1290244559}
   - component: {fileID: 1290244561}
+  - component: {fileID: 1290244559}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -965,7 +965,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290244557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1027,6 +1027,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c18a1c0f0066249a51c8fd6fd3b925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pepe: {fileID: 1605112927}
+  images:
+  - {fileID: 136742963}
+  - {fileID: 1131218256}
+  - {fileID: 874897196}
 --- !u!1 &1605112925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934520549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1258.9452, y: 365.8679, z: -223.83363}
+  m_LocalPosition: {x: 1258.9452, y: 365.8679, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
