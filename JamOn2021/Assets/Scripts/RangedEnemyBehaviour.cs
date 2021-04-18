@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using UnityEditor;
 using UnityEngine;
 
 public class RangedEnemyBehaviour : MonoBehaviour
