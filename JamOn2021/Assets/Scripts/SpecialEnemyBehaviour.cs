@@ -25,6 +25,7 @@ public class SpecialEnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         playerHealth = player.GetComponent<PlayerHealth>();
         active = false;

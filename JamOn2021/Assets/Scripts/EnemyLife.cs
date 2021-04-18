@@ -10,9 +10,11 @@ public class EnemyLife : MonoBehaviour
     }
     public void attack(float l)
     {
+        print("auch");
         life -= l;
         if (life <= 0)
         {
+            if (GetComponent<SpecialEnemyBehaviour>()) GameObject.FindGameObjectWithTag("InvokeBoss").GetComponent<InvokeBoss>().lightTorch();
             Destroy(gameObject);
             SoundManager.instance.enemyDeath();
         }

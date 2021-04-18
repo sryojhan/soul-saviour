@@ -32,8 +32,8 @@ public class PlayerHealth : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
            
-        if (mask)
-            mask.localScale = Vector3.zero;
+        //if (mask)
+        //    mask.localScale = Vector3.zero;
 
         colorPalette = Camera.main.GetComponent<ColorPalette>();
 
@@ -42,12 +42,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if (dead)
         {
-            if(mask)
-            mask.localScale = Vector3.one * maskMaxSize * t;
+            //if(mask)
+            //mask.localScale = Vector3.one * maskMaxSize * t;
             if (colorPalette)
                 colorPalette.ChangeColorSaturation(1 - t);
-            if ((t += Time.deltaTime * maskSpeed) > 1)
-                completeDeath();
+            //if ((t += Time.deltaTime * maskSpeed) > 1)
+            //    completeDeath();
             return;
         }
 
@@ -96,13 +96,13 @@ public class PlayerHealth : MonoBehaviour
     {
         lifes = 0;
         dead = true;
-        mask.position = transform.position;
+        //mask.position = transform.position;
     }
 
     private void completeDeath()
     {
         enabled = false;
         //Camera.main.GetComponent<ColorPalette>().enabled = false;
-        print("i am dead");
+        
     }
 }

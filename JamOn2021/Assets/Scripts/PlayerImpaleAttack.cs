@@ -19,12 +19,12 @@ public class PlayerImpaleAttack : MonoBehaviour
 
     float lastAttack = 0;
 
-    //void OnDrawGizmos()
-    //{
-    //    // Draw a yellow sphere at the transform's position
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawRay(inipos, dir * length);
-    //}
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(inipos, dir * length);
+    }
 
     private void Start()
     {

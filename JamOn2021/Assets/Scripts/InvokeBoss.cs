@@ -26,6 +26,7 @@ public class InvokeBoss : MonoBehaviour
             torches[indexAux].GetComponent<SpriteRenderer>().sprite = lightedTorch;
             indexAux++;
             SoundManager.instance.putTorch();
+            if (numTorches <= 0) invokeBoss();
         }
     }
 
@@ -39,7 +40,8 @@ public class InvokeBoss : MonoBehaviour
 
     void invokeBoss()
     {
-        print("invoke boss");
+        boss.SetActive(true);
+        boss.GetComponent<BossBattle>().StartBattle();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

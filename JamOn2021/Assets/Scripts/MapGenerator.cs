@@ -8,6 +8,8 @@ public class MapGenerator : MonoBehaviour
     [Header("Provisional")]
     public GameObject prefab;
 
+    [SerializeField] GameObject[] torches;
+
     public int numberOfRooms = 5;
     public int numberOfSpecialRooms = 3;
     public Transform scenery;
@@ -26,6 +28,17 @@ public class MapGenerator : MonoBehaviour
         var tileMap = new tileMap { ground = ground, wall = wall };
         RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), numberOfSpecialRooms, tilesPerRoom, tileMap, tileMaps);
         RoomManager.CreateInitialRoom(initial_room, tilesPerRoom, tileMap, tileMaps);
+        GameObject.FindGameObjectWithTag("Player").transform.position = initial_room.transform.position;
+
+        GameObject.FindGameObjectWithTag("Boss").transform.position = initial_room.transform.position;
+        GameObject.FindGameObjectWithTag("Boss").SetActive(false);
+
+        torches[0].transform.position = new Vector2(initial_room.transform.position.x - 2, initial_room.transform.position.y);
+        torches[1].transform.position = new Vector2(initial_room.transform.position.x - 2, initial_room.transform.position.y - 2);
+        torches[2].transform.position = new Vector2(initial_room.transform.position.x - 2, initial_room.transform.position.y + 2);
+        torches[3].transform.position = new Vector2(initial_room.transform.position.x + 2, initial_room.transform.position.y);
+        torches[4].transform.position = new Vector2(initial_room.transform.position.x + 2, initial_room.transform.position.y - 2);
+        torches[5].transform.position = new Vector2(initial_room.transform.position.x + 2, initial_room.transform.position.y + 2);
     }
 
     private List<Vector2Int> createMap()
