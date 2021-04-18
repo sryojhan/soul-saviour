@@ -171,8 +171,8 @@ MonoBehaviour:
   moveSpeed: 2
   viewDistance: 8
   pauseTime: 1.47
-  pauseBeforeAttack: 0
-  attackActiveTime: 0
+  pauseBeforeAttack: 0.3
+  attackActiveTime: 1.05
 --- !u!1 &2957771336103031462
 GameObject:
   m_ObjectHideFlags: 0

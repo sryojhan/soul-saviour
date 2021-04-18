@@ -133,14 +133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a6465ffe192af40b3a0354f3859fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdMouseTime: 0
+  holdMouseTime: 1.25
   attackDistanceFromPlayer: {fileID: 308235692968537475}
   playerPos: {fileID: 308235693296909013}
   attackRange: 0.7
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 64
-  damage: 10
+  damage: 25
   sweepSpriteDerecha: {fileID: 21300000, guid: 8d14305272a283848933dd0ce2bbd1b7, type: 3}
   sweepSpriteIzquierda: {fileID: 21300000, guid: d1d35fc15c49faf4d8bdcae75de6593a, type: 3}
   sweepSpriteArriba: {fileID: 21300000, guid: 3b874186b00560441955ace9ef09cdac, type: 3}
@@ -257,8 +257,8 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 64
-  damage: 20
-  cadence: 2
+  damage: 10
+  cadence: 0.65
   impaleSprite: {fileID: 21300000, guid: 889e2c00ec2d4a745806013012fec78d, type: 3}
   impaleSpriteAbajo: {fileID: 21300000, guid: 836fb0dfd2232bb40a3ad238a32508dc, type: 3}
   impaleSpriteArriba: {fileID: 21300000, guid: 836fb0dfd2232bb40a3ad238a32508dc, type: 3}

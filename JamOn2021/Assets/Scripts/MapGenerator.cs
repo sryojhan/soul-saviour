@@ -108,7 +108,7 @@ public class MapGenerator : MonoBehaviour
             rooms[i] = room;
 
 
-            int numEnemies = Random.Range(1, 3);
+            int numEnemies = Random.Range(1, 2);
 
             for (int j = 0; j < numEnemies && room != initial_room; j++)
             {
