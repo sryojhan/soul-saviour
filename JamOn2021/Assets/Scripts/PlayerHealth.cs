@@ -107,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerDash>().enabled = false;
         GetComponent<PlayerRangedAttack>().enabled = false;
         GetComponent<PlayerSweepAttack>().enabled = false;
-
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Invoke(nameof(loadMenu), 2);
     }
 
