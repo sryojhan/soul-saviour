@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public enum Escenas
 {
     Inicial = 0,
-    Menu
+    Menu,
+    Juego
 }
 
 public class GameManager : MonoBehaviour
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
     public void backToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }
