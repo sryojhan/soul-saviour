@@ -6,6 +6,6 @@ public class CanvasBehaviour : MonoBehaviour
 {
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
 }
