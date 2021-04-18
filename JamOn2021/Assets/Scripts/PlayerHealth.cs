@@ -102,6 +102,19 @@ public class PlayerHealth : MonoBehaviour
     private void completeDeath()
     {
         enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerImpaleAttack>().enabled = false;
+        GetComponent<PlayerDash>().enabled = false;
+        GetComponent<PlayerRangedAttack>().enabled = false;
+        GetComponent<PlayerSweepAttack>().enabled = false;
 
+        Invoke(nameof(loadMenu), 2);
     }
+
+
+    void loadMenu()
+    {
+        GameManager.instance.backToMenu();
+    }
+
 }

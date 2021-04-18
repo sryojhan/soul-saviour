@@ -919,15 +919,15 @@ PrefabInstance:
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[0]
       value: 
-      objectReference: {fileID: 1331017}
+      objectReference: {fileID: 2066942820732284813}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[1]
       value: 
-      objectReference: {fileID: 684735632}
+      objectReference: {fileID: 1331017}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[2]
       value: 
-      objectReference: {fileID: 886739673}
+      objectReference: {fileID: 684735632}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[3]
       value: 
@@ -935,7 +935,7 @@ PrefabInstance:
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[4]
       value: 
-      objectReference: {fileID: 886739673}
+      objectReference: {fileID: 2066942820732284812}
     - target: {fileID: 308235693296909000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: izq
       value: 
@@ -2706,6 +2706,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112152921382335846, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+      propertyPath: m_Name
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2066942820558825861, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -2806,9 +2810,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FinnishText
       objectReference: {fileID: 0}
+    - target: {fileID: 2066942820733608140, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+      propertyPath: m_Name
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066942821055610204, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+      propertyPath: m_Name
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2066942821102561488, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
       propertyPath: m_TagString
       value: TimerText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066942821123396357, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+      propertyPath: m_Name
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2066942821226557726, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
       propertyPath: m_IsActive
@@ -2818,5 +2834,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 2531444215331037890, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+      propertyPath: m_Name
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+--- !u!114 &2066942820732284812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5559966080370582433, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+  m_PrefabInstance: {fileID: 2066942820732284811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2066942820732284813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5592973416820042643, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+  m_PrefabInstance: {fileID: 2066942820732284811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
