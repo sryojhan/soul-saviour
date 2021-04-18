@@ -31,7 +31,6 @@ public class BossBattle : MonoBehaviour
     float shieldRecover = 0;
 
     int health = 400;
-
     public void StartBattle()
     {
         healthBar = GetComponent<HealthBarBehaviour>();
@@ -58,7 +57,12 @@ public class BossBattle : MonoBehaviour
             if (health <= 50) phase = Phase.PHASE2;
             else if (health <= 20) phase = Phase.PHASE3;
 
-            if (health <= 0) Destroy(this.gameObject);
+            if (health <= 0)
+            {
+                TimerBehaviour.instance.Finnish();
+                Time.timeScale = 0;
+                Destroy(gameObject);
+            }
         }
     }
 

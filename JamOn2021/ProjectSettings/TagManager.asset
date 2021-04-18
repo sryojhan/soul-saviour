@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Boss
   - InvokeBoss
+  - Enemy
+  - TimerText
+  - Panel
+  - FinnishText
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public enum Escenas
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject canvas;
     static public GameManager instance;
 
     private void Awake()
@@ -26,9 +27,17 @@ public class GameManager : MonoBehaviour
     public void changeScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        canvas.SetActive(true);
+        Time.timeScale = 1;
     }
     public void exit()
     {
         Application.Quit();
+    }
+    public void backToMenu()
+    {
+        SceneManager.LoadScene(0);
+        Debug.Log("asdf");
+        canvas.SetActive(false);
     }
 }
