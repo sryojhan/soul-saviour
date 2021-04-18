@@ -25,6 +25,10 @@ public class PlayerBulletBehaviour : MonoBehaviour
                 enemy.GetComponent<MeleeEnemy>().setActive(true);
             }
         }
+        else if (collision.gameObject.GetComponent<SpecialEnemyBehaviour>())
+        {
+            collision.gameObject.GetComponent<EnemyLife>().attack(bulletDamage);
+        }
         else if (collision.gameObject.GetComponent<BossBattle>())
         {
             collision.gameObject.GetComponent<BossBattle>().Hurt((int)bulletDamage);

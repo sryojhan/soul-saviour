@@ -10,6 +10,7 @@ TagManager:
   - TimerText
   - Panel
   - FinnishText
+  - TimerCanvas
   layers:
   - Default
   - TransparentFX

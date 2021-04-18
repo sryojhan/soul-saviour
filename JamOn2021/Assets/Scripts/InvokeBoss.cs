@@ -30,14 +30,6 @@ public class InvokeBoss : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            lightTorch();
-        }
-    }
-
     void invokeBoss()
     {
         boss.SetActive(true);
