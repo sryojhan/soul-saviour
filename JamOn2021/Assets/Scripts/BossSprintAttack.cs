@@ -47,6 +47,7 @@ public class BossSprintAttack : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 isSprinting = false;
+                collision.gameObject.GetComponent<PlayerHealth>().looseLife();
                 StartCoroutine(delayedStopAttack());
             }
             else if (collision.gameObject.GetComponent<RangedEnemyBehaviour>())

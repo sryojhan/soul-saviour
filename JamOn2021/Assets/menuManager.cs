@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class menuManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject help;
     public void Play()
     {
         GameManager.instance.changeScene();
@@ -12,5 +14,10 @@ public class menuManager : MonoBehaviour
     public void Exit()
     {
         GameManager.instance.exit();
+    }
+
+    public void helpPepe()
+    {
+        help.SetActive(!help.activeSelf);
     }
 }
