@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyLife : MonoBehaviour
@@ -10,14 +11,25 @@ public class EnemyLife : MonoBehaviour
     }
     public void attack(float l)
     {
-        print("auch");
         life -= l;
+
         if (life <= 0)
         {
             if (GetComponent<SpecialEnemyBehaviour>()) GameObject.FindGameObjectWithTag("InvokeBoss").GetComponent<InvokeBoss>().lightTorch();
             Destroy(gameObject);
             SoundManager.instance.enemyDeath();
         }
+       StartCoroutine(tick());
+    }
+
+    IEnumerator tick()
+    {
+        for (int i = 0; i < 6; ++i)
+        {
+            GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
+            yield return new WaitForSeconds(0.065f);
+        }
+        StopCoroutine(tick());
     }
 
     public float getLife()
