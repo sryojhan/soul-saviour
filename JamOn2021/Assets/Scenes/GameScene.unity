@@ -874,11 +874,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3106883739216746144, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: damage
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3106883739216746144, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: cadence
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -3106883739216746144, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: playerPos
@@ -897,12 +897,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 930573941}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: lifes
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: maskSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: maskMaxSize
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: invulneravilityTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: healthIcons.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[0]
@@ -914,6 +926,14 @@ PrefabInstance:
       objectReference: {fileID: 684735632}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[2]
+      value: 
+      objectReference: {fileID: 886739673}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: healthIcons.Array.data[3]
+      value: 
+      objectReference: {fileID: 886739673}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: healthIcons.Array.data[4]
       value: 
       objectReference: {fileID: 886739673}
     - target: {fileID: 308235693296909000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
@@ -993,12 +1013,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: attackRange
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: holdMouseTime
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}

@@ -30,7 +30,7 @@ public class BossBattle : MonoBehaviour
 
     float shieldRecover = 0;
 
-    int health = 400;
+    int health = 170;
     public void StartBattle()
     {
         healthBar = GetComponent<HealthBarBehaviour>();
