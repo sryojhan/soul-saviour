@@ -134,6 +134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &18560863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5592973416820042643, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+  m_PrefabInstance: {fileID: 2066942820732284811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &80529345
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 930573941}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: lifes
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: maskSpeed
@@ -919,21 +930,25 @@ PrefabInstance:
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[0]
       value: 
-      objectReference: {fileID: 1331017}
+      objectReference: {fileID: 18560863}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[1]
       value: 
-      objectReference: {fileID: 684735632}
+      objectReference: {fileID: 1331017}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[2]
       value: 
-      objectReference: {fileID: 886739673}
+      objectReference: {fileID: 684735632}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[3]
       value: 
       objectReference: {fileID: 886739673}
     - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: healthIcons.Array.data[4]
+      value: 
+      objectReference: {fileID: 1281576544}
+    - target: {fileID: -2395213136893313472, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: healthIcons.Array.data[5]
       value: 
       objectReference: {fileID: 886739673}
     - target: {fileID: 308235693296909000, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
@@ -2045,6 +2060,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd3a3ed4461eb04c821a66a0687ebc8, type: 3}
+--- !u!114 &1281576544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5559966080370582433, guid: 3ee0bc1d5d1726a49887ba9dbdfb10b6, type: 3}
+  m_PrefabInstance: {fileID: 2066942820732284811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1338654294
 GameObject:
   m_ObjectHideFlags: 0
