@@ -8,10 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
     PlayerDash dash;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     float x, y;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<PlayerDash>();
         direction = Vector2.zero;
@@ -36,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
+
+            if (rb.velocity.x > 0) sprite.flipX = false;
+            else if (rb.velocity.x < 0) sprite.flipX = true;
         }
     }
     private void FixedUpdate()

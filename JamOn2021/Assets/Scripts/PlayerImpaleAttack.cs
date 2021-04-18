@@ -12,7 +12,13 @@ public class PlayerImpaleAttack : MonoBehaviour
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
     [SerializeField] float cadence;
+    [SerializeField] Sprite impaleSprite;
+    [SerializeField] Sprite impaleSpriteAbajo;
+    [SerializeField] Sprite impaleSpriteArriba;
+    [SerializeField] Sprite impaleSpriteIzquierda;
 
+    SpriteRenderer sp;
+    Sprite originalSprite;
     RaycastHit2D enemyHit;
     Vector2 inipos;
     Vector2 dir;
@@ -28,6 +34,8 @@ public class PlayerImpaleAttack : MonoBehaviour
 
     private void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
+        originalSprite = GetComponent<SpriteRenderer>().sprite;
         playerPos = this.transform;
     }
 
@@ -48,6 +56,29 @@ public class PlayerImpaleAttack : MonoBehaviour
             inipos = playerPos2D + (dir * attackStartPointOffset);
             enemyHit = Physics2D.BoxCast(playerPos2D + (dir * attackStartPointOffset), new Vector2(0.1f, width), angle, dir, length, whatIsEnemies);
 
+            
+            if(mouseWorldPoint.y < transform.position.y)
+            {
+                if (mouseWorldPoint.x > mouseWorldPoint.y)
+                {
+                    if(mouseWorldPoint.x > transform.position.x) sp.sprite = impaleSprite;
+                    else sp.sprite = impaleSpriteIzquierda;
+                }
+                else sp.sprite = impaleSpriteAbajo;
+            }
+            else
+            {
+                if (mouseWorldPoint.x > mouseWorldPoint.y)
+                {
+                    if (mouseWorldPoint.x > transform.position.x) sp.sprite = impaleSprite;
+                    else sp.sprite = impaleSpriteIzquierda;
+                }
+                else sp.sprite = impaleSpriteArriba;
+            }
+            sp.flipX = false;
+            sp.flipY= false;
+
+            Invoke("resetSprite", 0.3f);
             SoundManager.instance.impaleSound();
 
             if (enemyHit.collider != null)
@@ -67,5 +98,9 @@ public class PlayerImpaleAttack : MonoBehaviour
             }
 
         }
+    }
+    void resetSprite()
+    {
+        sp.sprite = originalSprite;
     }
 }

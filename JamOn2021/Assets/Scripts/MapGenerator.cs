@@ -27,8 +27,14 @@ public class MapGenerator : MonoBehaviour
     {
         var tileMaps = new tileMaps { background = mainTileMap, walls = walls };
         var tileMap = new tileMap { ground = ground, wall = wall };
-        RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), numberOfSpecialRooms, tilesPerRoom, tileMap, tileMaps);
+        var rooms = RoomManager.ManageRooms(instantiateRooms(createMap(), out Room initial_room), numberOfSpecialRooms, tilesPerRoom, tileMap, tileMaps);
         RoomManager.CreateInitialRoom(initial_room, tilesPerRoom, tileMap, tileMaps);
+
+        for (int i = 0; i < numberOfSpecialRooms; i++)
+        {
+            Instantiate(enemies[2], rooms[i].transform.position, Quaternion.identity);
+        }
+
         GameObject.FindGameObjectWithTag("Player").transform.position = initial_room.transform.position;
 
         GameObject.FindGameObjectWithTag("Boss").transform.position = initial_room.transform.position;
@@ -142,17 +148,17 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < numberOfSpecialRooms; ++i)
-        {
-            int rndRoom;
-            do
-            {
-                rndRoom = Random.Range(0, rooms.Length);
-            }
-            while (rooms[rndRoom] == initial_room);
+        //for (int i = 0; i < numberOfSpecialRooms; ++i)
+        //{
+        //    int rndRoom;
+        //    do
+        //    {
+        //        rndRoom = Random.Range(0, rooms.Length);
+        //    }
+        //    while (rooms[rndRoom] == initial_room);
 
-            Instantiate(enemies[2], rooms[rndRoom].transform.position, Quaternion.identity);
-        }
+        //    Instantiate(enemies[2], rooms[rndRoom].transform.position, Quaternion.identity);
+        //}
 
         return rooms;
     }
