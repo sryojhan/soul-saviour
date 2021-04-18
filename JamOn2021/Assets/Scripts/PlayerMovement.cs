@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
 
-            if (!GetComponent<PlayerImpaleAttack>().isAttacking)
+            if (!GetComponent<PlayerImpaleAttack>().isAttacking && !GetComponent<PlayerSweepAttack>().isAttacking)
             {
                 if (rb.velocity.x > 0) sprite.sprite = dcha;
                 else if (rb.velocity.x < 0) sprite.sprite = izq;

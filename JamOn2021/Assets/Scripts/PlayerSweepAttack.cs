@@ -16,6 +16,7 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] Sprite sweepSpriteIzquierda;
     [SerializeField] Sprite sweepSpriteArriba;
     [SerializeField] Sprite sweepSpriteAbajo;
+    public bool isAttacking = false;
 
 
     SpriteRenderer sp;
@@ -43,9 +44,10 @@ public class PlayerSweepAttack : MonoBehaviour
     // Update is called once per frame
     void manageSprite(Vector2 mouseWorldPoint)
     {
+        Vector2 aux1 = mouseWorldPoint - new Vector2(playerPos.position.x, playerPos.position.y);
         if (mouseWorldPoint.y < transform.position.y)
         {
-            if (mouseWorldPoint.x > mouseWorldPoint.y)
+            if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
             {
                 if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
                 else sp.sprite = sweepSpriteIzquierda;
@@ -54,15 +56,21 @@ public class PlayerSweepAttack : MonoBehaviour
         }
         else
         {
-            if (mouseWorldPoint.x > mouseWorldPoint.y)
+            if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
             {
                 if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
                 else sp.sprite = sweepSpriteIzquierda;
             }
             else sp.sprite = sweepSpriteArriba;
         }
-        sp.flipX = false;
-        sp.flipY = false;
+        StartCoroutine(delayStopAttack());
+    }
+
+    IEnumerator delayStopAttack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isAttacking = false;
+        StopCoroutine(delayStopAttack());
     }
 
     void resetSprite()
@@ -80,6 +88,7 @@ public class PlayerSweepAttack : MonoBehaviour
         {
             if (isHeldEnough())
             {
+                isAttacking = true;
                 SoundManager.instance.sweepSound();
                 Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
