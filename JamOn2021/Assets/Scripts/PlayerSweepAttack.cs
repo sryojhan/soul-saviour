@@ -13,6 +13,7 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
 
+
     private Vector2 attackPos;
 
 
@@ -41,6 +42,7 @@ public class PlayerSweepAttack : MonoBehaviour
         {
             if (isHeldEnough())
             {
+                SoundManager.instance.sweepSound();
                 Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
                 Vector2 circlePosDir = ((mouseWorldPoint - playerPos2D).normalized) * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
@@ -62,7 +64,6 @@ public class PlayerSweepAttack : MonoBehaviour
                         enemiesToDamage[i].gameObject.GetComponent<EnemyLife>().attack(damage);
                     }
                 }
-                SoundManager.instance.sweepSound();
             }
 
             timeHeld = 0;
