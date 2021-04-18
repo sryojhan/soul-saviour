@@ -17,6 +17,8 @@ public class PlayerImpaleAttack : MonoBehaviour
     [SerializeField] Sprite impaleSpriteArriba;
     [SerializeField] Sprite impaleSpriteIzquierda;
 
+    public bool isAttacking = false;
+
     SpriteRenderer sp;
     Sprite originalSprite;
     RaycastHit2D enemyHit;
@@ -45,6 +47,7 @@ public class PlayerImpaleAttack : MonoBehaviour
         lastAttack += Time.deltaTime;
         if (Input.GetMouseButtonUp(0) && !sweepComponent.isHeldEnough() && lastAttack >= cadence)
         {
+            isAttacking = true;
             lastAttack = 0;
             Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
@@ -56,27 +59,26 @@ public class PlayerImpaleAttack : MonoBehaviour
             inipos = playerPos2D + (dir * attackStartPointOffset);
             enemyHit = Physics2D.BoxCast(playerPos2D + (dir * attackStartPointOffset), new Vector2(0.1f, width), angle, dir, length, whatIsEnemies);
 
-            
-            if(mouseWorldPoint.y < transform.position.y)
+            Vector2 aux1 = mouseWorldPoint - playerPos2D;
+
+            if (mouseWorldPoint.y < transform.position.y)
             {
-                if (mouseWorldPoint.x > mouseWorldPoint.y)
+                if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
                 {
-                    if(mouseWorldPoint.x > transform.position.x) sp.sprite = impaleSprite;
+                    if (mouseWorldPoint.x > transform.position.x) sp.sprite = impaleSprite;
                     else sp.sprite = impaleSpriteIzquierda;
                 }
                 else sp.sprite = impaleSpriteAbajo;
             }
             else
             {
-                if (mouseWorldPoint.x > mouseWorldPoint.y)
+                if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
                 {
                     if (mouseWorldPoint.x > transform.position.x) sp.sprite = impaleSprite;
                     else sp.sprite = impaleSpriteIzquierda;
                 }
                 else sp.sprite = impaleSpriteArriba;
             }
-            sp.flipX = false;
-            sp.flipY= false;
 
             Invoke("resetSprite", 0.3f);
             SoundManager.instance.impaleSound();
@@ -96,8 +98,15 @@ public class PlayerImpaleAttack : MonoBehaviour
                     enemyHit.collider.gameObject.GetComponent<EnemyLife>().attack(damage);
                 }
             }
-
+            StartCoroutine(delayStopAttack());
         }
+    }
+
+    IEnumerator delayStopAttack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isAttacking = false;
+        StopCoroutine(delayStopAttack());
     }
     void resetSprite()
     {

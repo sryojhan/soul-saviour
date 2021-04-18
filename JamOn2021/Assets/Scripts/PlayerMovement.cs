@@ -4,6 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float dashCadence;
+    [SerializeField] Sprite dcha;
+    [SerializeField] Sprite izq;
 
     private Vector2 direction;
     PlayerDash dash;
@@ -39,8 +41,11 @@ public class PlayerMovement : MonoBehaviour
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
 
-            if (rb.velocity.x > 0) sprite.flipX = false;
-            else if (rb.velocity.x < 0) sprite.flipX = true;
+            if (!GetComponent<PlayerImpaleAttack>().isAttacking)
+            {
+                if (rb.velocity.x > 0) sprite.sprite = dcha;
+                else if (rb.velocity.x < 0) sprite.sprite = izq;
+            }
         }
     }
     private void FixedUpdate()
