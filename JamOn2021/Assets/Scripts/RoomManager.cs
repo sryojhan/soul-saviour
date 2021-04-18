@@ -9,7 +9,7 @@ public static class RoomManager
     {
         none, special, lava, holes, turrets, info
     }
-    public static void ManageRooms(Room[] rooms, int nSpecial, int roomSize, tileMap tiles, tileMaps tileMap)
+    public static Room[] ManageRooms(Room[] rooms, int nSpecial, int roomSize, tileMap tiles, tileMaps tileMap)
     {
         int N = rooms.Length;
 
@@ -34,12 +34,15 @@ public static class RoomManager
             CreateRoomInterior(room, roomSize, tiles, tileMap.background);
         foreach (Room room in rooms)
             CreateRoomBorder(room, roomSize, tiles, tileMap.walls);
+
+        return rooms;
     }
 
     public static void CreateInitialRoom(Room initial_room, int size, tileMap tiles, tileMaps tilemap)
     {
         CreateRoomInterior(initial_room, size, tiles, tilemap.background);
         CreateRoomBorder(initial_room, size, tiles, tilemap.walls);
+
     }
 
     

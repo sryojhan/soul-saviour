@@ -32,7 +32,7 @@ public class BossBattle : MonoBehaviour
 
     int health = 400;
 
-    void Start()
+    public void StartBattle()
     {
         healthBar = GetComponent<HealthBarBehaviour>();
         player = GameObject.FindWithTag("Player");

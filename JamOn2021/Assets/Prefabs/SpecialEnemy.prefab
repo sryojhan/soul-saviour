@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7086443479823510346}
   - component: {fileID: 7086443479823510347}
   - component: {fileID: 5782976073003429381}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpecialEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7086443480313932701}
   - component: {fileID: 7086443480313932702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
