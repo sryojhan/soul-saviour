@@ -1088,6 +1088,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909014, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909014, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308235693296909014, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 308235693296909015, guid: eebe49f924d1bb94a9b693da2505d9d4, type: 3}
       propertyPath: attackRange
       value: 1.5
@@ -1110,6 +1122,7 @@ GameObject:
   - component: {fileID: 634509521}
   - component: {fileID: 634509520}
   - component: {fileID: 634509523}
+  - component: {fileID: 634509524}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1195,6 +1208,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTr: {fileID: 1535493735}
+--- !u!114 &634509524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634509519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d97e4a31a1c044e9d0c0be4c3b9114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: cde68468323b35448b3147db0983978b, type: 2}
 --- !u!1 &684735630
 GameObject:
   m_ObjectHideFlags: 0
