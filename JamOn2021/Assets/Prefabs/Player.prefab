@@ -141,6 +141,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 10
+  sweepSpriteDerecha: {fileID: 21300000, guid: 8d14305272a283848933dd0ce2bbd1b7, type: 3}
+  sweepSpriteIzquierda: {fileID: 21300000, guid: d1d35fc15c49faf4d8bdcae75de6593a, type: 3}
+  sweepSpriteArriba: {fileID: 21300000, guid: 3b874186b00560441955ace9ef09cdac, type: 3}
+  sweepSpriteAbajo: {fileID: 21300000, guid: 57b50a36fc2cf494ba7e7ca3e18c2e5d, type: 3}
 --- !u!114 &308235693296909000
 MonoBehaviour:
   m_ObjectHideFlags: 0

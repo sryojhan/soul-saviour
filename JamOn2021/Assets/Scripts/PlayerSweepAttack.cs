@@ -12,11 +12,21 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
+    [SerializeField] Sprite sweepSpriteDerecha;
+    [SerializeField] Sprite sweepSpriteIzquierda;
+    [SerializeField] Sprite sweepSpriteArriba;
+    [SerializeField] Sprite sweepSpriteAbajo;
 
 
+    SpriteRenderer sp;
+    Sprite originalSprite;
     private Vector2 attackPos;
 
-
+    private void Start()
+    {
+        sp = GetComponent<SpriteRenderer>();
+        originalSprite = sp.sprite;
+    }
     //void OnDrawGizmos()
     //{
     //    // Draw a yellow sphere at the transform's position
@@ -31,6 +41,34 @@ public class PlayerSweepAttack : MonoBehaviour
     }
 
     // Update is called once per frame
+    void manageSprite(Vector2 mouseWorldPoint)
+    {
+        if (mouseWorldPoint.y < transform.position.y)
+        {
+            if (mouseWorldPoint.x > mouseWorldPoint.y)
+            {
+                if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
+                else sp.sprite = sweepSpriteIzquierda;
+            }
+            else sp.sprite = sweepSpriteAbajo;
+        }
+        else
+        {
+            if (mouseWorldPoint.x > mouseWorldPoint.y)
+            {
+                if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
+                else sp.sprite = sweepSpriteIzquierda;
+            }
+            else sp.sprite = sweepSpriteArriba;
+        }
+        sp.flipX = false;
+        sp.flipY = false;
+    }
+
+    void resetSprite()
+    {
+        sp.sprite = originalSprite;
+    }
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -64,6 +102,8 @@ public class PlayerSweepAttack : MonoBehaviour
                         enemiesToDamage[i].gameObject.GetComponent<EnemyLife>().attack(damage);
                     }
                 }
+                manageSprite(mouseWorldPoint);
+                Invoke("resetSprite", 0.3f);
             }
 
             timeHeld = 0;
