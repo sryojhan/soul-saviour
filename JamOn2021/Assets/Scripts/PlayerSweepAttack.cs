@@ -12,10 +12,22 @@ public class PlayerSweepAttack : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] LayerMask whatIsEnemies;
     [SerializeField] float damage;
+    [SerializeField] Sprite sweepSpriteDerecha;
+    [SerializeField] Sprite sweepSpriteIzquierda;
+    [SerializeField] Sprite sweepSpriteArriba;
+    [SerializeField] Sprite sweepSpriteAbajo;
+    public bool isAttacking = false;
 
+
+    SpriteRenderer sp;
+    Sprite originalSprite;
     private Vector2 attackPos;
 
-
+    private void Start()
+    {
+        sp = GetComponent<SpriteRenderer>();
+        originalSprite = sp.sprite;
+    }
     //void OnDrawGizmos()
     //{
     //    // Draw a yellow sphere at the transform's position
@@ -30,6 +42,41 @@ public class PlayerSweepAttack : MonoBehaviour
     }
 
     // Update is called once per frame
+    void manageSprite(Vector2 mouseWorldPoint)
+    {
+        Vector2 aux1 = mouseWorldPoint - new Vector2(playerPos.position.x, playerPos.position.y);
+        if (mouseWorldPoint.y < transform.position.y)
+        {
+            if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
+            {
+                if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
+                else sp.sprite = sweepSpriteIzquierda;
+            }
+            else sp.sprite = sweepSpriteAbajo;
+        }
+        else
+        {
+            if (Mathf.Abs(aux1.x) > Mathf.Abs(aux1.y))
+            {
+                if (mouseWorldPoint.x > transform.position.x) sp.sprite = sweepSpriteDerecha;
+                else sp.sprite = sweepSpriteIzquierda;
+            }
+            else sp.sprite = sweepSpriteArriba;
+        }
+        StartCoroutine(delayStopAttack());
+    }
+
+    IEnumerator delayStopAttack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isAttacking = false;
+        StopCoroutine(delayStopAttack());
+    }
+
+    void resetSprite()
+    {
+        sp.sprite = originalSprite;
+    }
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -41,6 +88,8 @@ public class PlayerSweepAttack : MonoBehaviour
         {
             if (isHeldEnough())
             {
+                isAttacking = true;
+                SoundManager.instance.sweepSound();
                 Vector2 mouseWorldPoint = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 Vector2 playerPos2D = new Vector2(playerPos.position.x, playerPos.position.y);
                 Vector2 circlePosDir = ((mouseWorldPoint - playerPos2D).normalized) * (attackDistanceFromPlayer.position - playerPos.position).magnitude;
@@ -62,7 +111,8 @@ public class PlayerSweepAttack : MonoBehaviour
                         enemiesToDamage[i].gameObject.GetComponent<EnemyLife>().attack(damage);
                     }
                 }
-                SoundManager.instance.sweepSound();
+                manageSprite(mouseWorldPoint);
+                Invoke("resetSprite", 0.3f);
             }
 
             timeHeld = 0;

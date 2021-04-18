@@ -4,14 +4,18 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float dashCadence;
+    [SerializeField] Sprite dcha;
+    [SerializeField] Sprite izq;
 
     private Vector2 direction;
     PlayerDash dash;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     float x, y;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<PlayerDash>();
         direction = Vector2.zero;
@@ -36,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
 
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
+
+            if (!GetComponent<PlayerImpaleAttack>().isAttacking && !GetComponent<PlayerSweepAttack>().isAttacking)
+            {
+                if (rb.velocity.x > 0) sprite.sprite = dcha;
+                else if (rb.velocity.x < 0) sprite.sprite = izq;
+            }
         }
     }
     private void FixedUpdate()
