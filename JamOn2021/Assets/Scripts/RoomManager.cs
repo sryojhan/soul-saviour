@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class RoomManager
 {
+    public static float wall_threshold = 0.85f;
     public enum RoomTypes
     {
         none, special, lava, holes, turrets, info
@@ -42,7 +43,6 @@ public static class RoomManager
     {
         CreateRoomInterior(initial_room, size, tiles, tilemap.background);
         CreateRoomBorder(initial_room, size, tiles, tilemap.walls);
-
     }
 
     
@@ -55,15 +55,59 @@ public static class RoomManager
         if (!room.bottom)
             for (int x = pos.x; x <= pos.x + size; x++)
                 tilemap.SetTile(new Vector3Int(x, pos.y, 0), tiles.wall);
+        else
+        {
+            if(Random.value > wall_threshold)
+            {
+                for(int x = pos.x; x < pos.x + size / 2 - 1; x++)
+                    tilemap.SetTile(new Vector3Int(x, pos.y, 0), tiles.wall);
+
+                for (int x = pos.x + size / 2 + 1; x <= pos.x + size ; x++)
+                    tilemap.SetTile(new Vector3Int(x, pos.y, 0), tiles.wall);
+            }
+        }
         if (!room.up)
             for (int x = pos.x; x <= pos.x + size; x++)
                 tilemap.SetTile(new Vector3Int(x, pos.y + size, 0), tiles.wall);
+        else
+        {
+            if (Random.value > wall_threshold)
+            {
+                for (int x = pos.x; x < pos.x + size / 2 - 1; x++)
+                    tilemap.SetTile(new Vector3Int(x, pos.y + size, 0), tiles.wall);
+
+                for (int x = pos.x + size / 2 + 1; x <= pos.x + size; x++)
+                    tilemap.SetTile(new Vector3Int(x, pos.y + size, 0), tiles.wall);
+            }
+        }
         if (!room.left)
             for (int y = pos.y; y <= pos.y + size; y++)
                 tilemap.SetTile(new Vector3Int(pos.x, y, 0), tiles.wall);
+        else
+        {
+            if (Random.value > wall_threshold)
+            {
+                for (int y = pos.y; y < pos.y + size / 2 - 1; y++)
+                    tilemap.SetTile(new Vector3Int(pos.x, y, 0), tiles.wall);
+
+                for (int y = pos.y + size / 2 + 1; y <= pos.y + size; y++)
+                    tilemap.SetTile(new Vector3Int(pos.x, y, 0), tiles.wall);
+            }
+        }
         if (!room.right)
             for (int y = pos.y; y <= pos.y + size; y++)
                 tilemap.SetTile(new Vector3Int(pos.x + size, y, 0), tiles.wall);
+        else
+        {
+            if (Random.value > wall_threshold)
+            {
+                for (int y = pos.y; y < pos.y + size / 2 - 1; y++)
+                    tilemap.SetTile(new Vector3Int(pos.x + size, y, 0), tiles.wall);
+
+                for (int y = pos.y + size / 2 + 1; y <= pos.y + size; y++)
+                    tilemap.SetTile(new Vector3Int(pos.x + size, y, 0), tiles.wall);
+            }
+        }
     }
     static void CreateRoomInterior(Room room, int size, tileMap tiles, Tilemap tilemap)
     {
