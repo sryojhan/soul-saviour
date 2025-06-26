@@ -46,7 +46,7 @@ Core mechanics include:
 ---
 
 ## 👤 Author
-**Yojhan Steven García Peña**  
+**Yojhan Steven García Peña**
 [🌐 Portfolio](https://sryojhan.github.io/) • [GitHub](https://github.com/sryojhan)  
 **Pablo Fernández Álvarez**
 [Github](https://github.com/PabloFernandezAl01)
